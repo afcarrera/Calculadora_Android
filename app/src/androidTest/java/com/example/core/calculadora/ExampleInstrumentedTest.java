@@ -1,4 +1,4 @@
-package com.example.core.suma;
+package com.example.core.calculadora;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

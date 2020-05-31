@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "28.0.1"
     defaultConfig {
-        applicationId "com.example.core.suma"
+        applicationId "com.example.core.calculadora"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1

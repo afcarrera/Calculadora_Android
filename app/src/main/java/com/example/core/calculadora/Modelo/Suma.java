@@ -1,4 +1,4 @@
-package com.example.core.suma.Modelo;
+package com.example.core.calculadora.Modelo;
 
 /**
  * Created by Core on 27/5/2020.

@@ -1,8 +1,10 @@
-package com.example.core.suma;
+package com.example.core.calculadora;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import com.example.core.suma.Modelo.Suma;
+import com.example.core.calculadora.Modelo.Suma;
+import com.example.core.suma.R;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
