@@ -1,0 +1,5 @@
+com.example.core.calculadora
+com.example.core.calculadora.interfaces
+com.example.core.calculadora.modelo
+com.example.core.calculadora.presentador
+com.example.core.calculadora.vista
