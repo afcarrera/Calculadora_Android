@@ -1,7 +1,12 @@
 package com.example.core.calculadora.modelo;
 
 /**
- * Created by Core on 4/6/2020.
+ * OperacionModelo.java:
+ *
+ *  Clase OperacionModelo que contiene metodos encapsulados.
+ *
+ * @author Alberto Carrera
+ * @version 1.0, 31/05/2020
  */
 
 public class OperacionModelo {
