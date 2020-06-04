@@ -3,7 +3,8 @@ package com.example.core.calculadora.interfaces;
 /**
  * OperacionVistaInterface.java:
  *
- *  Interface con los métodos a implementarse en la clase OperacionMainActivity.
+ *  Interface con los métodos a implementarse en la clase
+ *  OperacionMainActivity.
  *
  * @author Alberto Carrera
  * @version 1.0, 31/05/2020
@@ -18,6 +19,28 @@ public interface OperacionVistaInterface {
      */
     void mostrarResultado(String resultado);
 
-    /** Muestra el mensaje "Operación Inválida" cuando una operación es inválida */
+    /**
+     * Muestra el número que esta en memoria
+     *
+     * @param numeroMemoria Número que esta en memoria
+     */
+    void mostrarNumeroMemoria(String numeroMemoria);
+
+    /**
+     * Muestra el operador de la operación a realizar en memoria.
+     *
+     * @param operador Operador de la operación a realizar en memoria
+     */
+    void mostrarOperadorMemoria(String operador);
+
+    /**
+     * Muestra el número que esta en memoria en pantalla
+     *
+     * @param numeroMemoria Número que esta en memoria
+     */
+    void mostrarNumeroMemoriaPantalla(String numeroMemoria);
+
+    /** Muestra el mensaje "Operación Inválida"
+     * cuando una operación es inválida */
     void mostrarOperacionInvalida();
 }

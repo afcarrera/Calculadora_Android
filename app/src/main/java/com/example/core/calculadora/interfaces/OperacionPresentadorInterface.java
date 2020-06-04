@@ -1,9 +1,13 @@
 package com.example.core.calculadora.interfaces;
 
+import android.view.View;
+import android.widget.TextView;
+
 /**
  * OperacionPresentadorInterface.java:
  *
- *  Interface con los métodos a implementarse en la clase OperacionPresentadorImpl.
+ *  Interface con los métodos a implementarse en la clase
+ *  OperacionPresentadorImpl.
  *
  * @author Alberto Carrera
  * @version 1.0, 31/05/2020
@@ -18,39 +22,63 @@ public interface OperacionPresentadorInterface {
      */
     void mostrarResultado(String resultado);
 
-    /** Muestra el mensaje "Operación Inválida" cuando una operación es inválida */
+    /**
+     * Muestra el número que esta en memoria
+     *
+     * @param numeroMemoria Número que esta en memoria
+     */
+    void mostrarNumeroMemoria(String numeroMemoria);
+
+    /**
+     * Muestra el operador de la operación a realizar en memoria.
+     *
+     * @param operador Operador de la operación a realizar en memoria
+     */
+    void mostrarOperadorMemoria(String operador);
+
+    /**
+     * Muestra el número que esta en memoria
+     *
+     * @param numeroMemoria Número que esta en memoria
+     */
+    void mostrarNumeroMemoriaPantalla(String numeroMemoria);
+
+    /**
+     * Muestra el mensaje "Operación Inválida" cuando
+     * una operación es inválida
+     */
     void mostrarOperacionInvalida();
 
     /**
-     * Realiza la operación de suma.
+     * Valida que el numero sea ingresado de manera correcta.
      *
-     * @param num1 Primer sumando de la operación de suma
-     * @param num2 Segundo sumando de la operación de suma
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
      */
-    void sumar(double num1, double num2);
+    void validarIngresoNumero(View view,TextView txtPantalla);
 
     /**
-     * Realiza la operación de resta.
+     * Realiza la operación.
      *
-     * @param num1 Minuendo de la operación de resta
-     * @param num2 Sustraendo de la operación de resta
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
      */
-    void restar(double num1, double num2);
+    void realizarOperacion(View view, TextView txtPantalla);
 
     /**
-     * Realiza la operación de multiplicación.
+     * Ingresa un número a memoria.
      *
-     * @param num1 Primer factor de la operación de multiplicación
-     * @param num2 Segundo factor de la operación de multiplicación
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
      */
-    void multiplicar(double num1, double num2);
+    void ingresarNumeroMemoria(View view, TextView txtPantalla);
 
     /**
-     * Realiza la operación de división.
+     * Borra todas las operaciones y numeros.
      *
-     * @param num1 Dividendo de la operación de división
-     * @param num2 Divisor de la operación de división
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
      */
-    void dividir(double num1, double num2);
+    void borrarTodo(View view, TextView txtPantalla);
 }
 
