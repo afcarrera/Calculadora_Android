@@ -80,7 +80,6 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
     @Override
     public void mostrarNumeroMemoriaPantalla(String numeroMemoria) {
         if (vista != null) {
-            modelo.vaciarNumeroPantalla();
             vista.mostrarNumeroMemoriaPantalla(numeroMemoria);
         }
     }
@@ -90,6 +89,19 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
     public void mostrarOperacionInvalida() {
         if (vista != null) {
             vista.mostrarOperacionInvalida();
+        }
+    }
+
+
+    /**
+     * Muestra la cadena que contiene la operación.
+     *
+     * @param cadenaOperacion Cadena que contiene la operación
+     */
+    @Override
+    public void mostrarCadenaOperacion(String cadenaOperacion){
+        if (vista != null) {
+            vista. mostrarCadenaOperacion(cadenaOperacion);
         }
     }
 
@@ -129,6 +141,7 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
     @Override
     public void realizarOperacion(View view,TextView txtPantalla){
         String operador;
+        Double numero =Double.parseDouble(txtPantalla.getText().toString());
             switch (view.getId()) {
                 case R.id.btnSuma:
                     operador = "+";
@@ -137,79 +150,36 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
                     operador = "-";
                     break;
                 case R.id.btnMultiplicacion:
-                    operador = "*";
+                    operador = "x";
                     break;
                 case R.id.btnDivision:
                     operador = "/";
                     break;
+                case R.id.btnExponente:
+                    operador = "^";
+                    break;
                 case R.id.btnIgual:
-                    operador = modelo.validarOperador();
+                    operador = "=";
                     break;
                 default:
                     operador = "";
             }
         if (modelo != null) {
-            realizarOperacion(operador,txtPantalla);
-            modelo.ingresarOperador(operador);
-        }
-    }
-
-    /**
-     * Escoge la operación a realizar.
-     *
-     * @param operador operador de la operación a realizar
-     */
-    public void escogerOperacion(String operador){
-        if(operador=="+"){
-            modelo.sumar(Double.parseDouble(modelo.validarPrimerNumero()),
-                    Double.parseDouble(modelo.validarSegundoNumero()));
-        }
-        if(operador=="-"){
-            modelo.restar(Double.parseDouble(modelo.validarPrimerNumero()),
-                    Double.parseDouble(modelo.validarSegundoNumero()));
-        }
-        if(operador=="*"){
-            modelo.multiplicar(Double.parseDouble(modelo.validarPrimerNumero()),
-                    Double.parseDouble(modelo.validarSegundoNumero()));
-        }
-        if(operador=="/"){
-            modelo.dividir(Double.parseDouble(modelo.validarPrimerNumero()),
-                    Double.parseDouble(modelo.validarSegundoNumero()));
-        }
-    }
-
-    /**
-     * Ingresa el operador para la operación a realizar.
-     *
-     * @param operador operador de la operación a realizar
-     * @param txtPantalla Número ingresado por pantalla
-     */
-    public void realizarOperacion(String operador, TextView txtPantalla){
-        if(txtPantalla.getText().toString()!=""){
-            if(modelo.validarPrimerNumero()!=""){
-                if(modelo.validarOperador()!="") {
-                    modelo.ingresarSegundoNumero(txtPantalla.getText().toString());
-                    txtPantalla.setText(null);
-                    modelo.vaciarNumeroPantalla();
-                    escogerOperacion(modelo.validarOperador());
-                    modelo.ingresarPrimerNumero(txtPantalla.getText().toString());
-                    modelo.ingresarSegundoNumero("");
-                    if(operador!="=") {
-                        modelo.ingresarOperador(operador);
-                    }else{
-                        modelo.ingresarOperador(operador);
-                    }
-                }
+            modelo.vaciarNumeroPantalla();
+            if(numero>=0){
+                modelo.validarIngresoCadena(""+numero);
             }else{
-                modelo.ingresarPrimerNumero(txtPantalla.getText().toString());
-                if(operador!="=") {
-                    modelo.ingresarOperador(operador);
-                }
-                modelo.vaciarNumeroPantalla();
-                modelo.ingresarSegundoNumero("");
+                modelo.validarIngresoCadena("(0"+numero+")");
+            }
+            if(operador=="="){
+                modelo.realizarOperacion();
+                modelo.vaciarCadenaOperacion();
+            }else{
+                modelo.validarIngresoCadena(operador);
             }
         }
     }
+
 
     /**
      * Ingresa un número a memoria.
@@ -254,7 +224,32 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
             }
             modelo.ingresarNumeroMemoria(txtPantalla.getText().toString());
         }
+    }
 
+    /**
+     * Obtiene el obtenerFactorial de un número.
+     *
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
+     */
+    @Override
+    public void obtenerFactorial(View view, TextView txtPantalla){
+        Double numero = Double.parseDouble(txtPantalla.getText().toString());
+        Double resultado=0.0;
+        if(numero.isInfinite()){
+            modelo.vaciarNumeroPantalla();
+            vista.mostrarOperacionInvalida();
+        }else{
+            if (modelo != null) {
+                if(numero%1==0){
+                    resultado=modelo.obtenerFactorial(numero);
+                    modelo.vaciarNumeroPantalla();
+                    vista.mostrarResultado(resultado.toString());
+                }else{
+                    vista.mostrarOperacionInvalida();
+                }
+            }
+        }
     }
 
     /**
@@ -262,12 +257,12 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
      *
      * @param view Vista de la aplicación
      * @param txtPantalla Número ingresado por pantalla
+     * @param txtCadenaOperacion Cadena de la operación
      */
-    public void borrarTodo(View view, TextView txtPantalla){
-        txtPantalla.setText(null);
+    public void borrarTodo(View view, TextView txtPantalla, TextView txtCadenaOperacion){
+        txtPantalla.setText("0");
+        txtCadenaOperacion.setText(null);
         modelo.vaciarNumeroPantalla();
-        modelo.ingresarPrimerNumero("");
-        modelo.ingresarSegundoNumero("");
-        modelo.ingresarOperador("");
+        modelo.vaciarCadenaOperacion();
     }
 }

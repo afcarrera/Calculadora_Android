@@ -1,6 +1,7 @@
 package com.example.core.calculadora.modelo;
 import com.example.core.calculadora.interfaces.OperacionModeloInterface;
 import com.example.core.calculadora.interfaces.OperacionPresentadorInterface;
+import java.lang.Object;
 
 /**
  * OperacionModeloImpl.java:
@@ -8,16 +9,16 @@ import com.example.core.calculadora.interfaces.OperacionPresentadorInterface;
  *  Clase implementada de la interface OperacionModeloInterface.
  *
  * @author Alberto Carrera
- * @version 1.0, 31/05/2020
+ * @version 1.0, 07/06/2020
+ * @since 1.0, 31/05/2020
  */
 
 public class OperacionModeloImpl implements OperacionModeloInterface {
 
-    /** Modelo de la aplicación */
-    private OperacionModelo modelo;
 
     /** Presentador de la aplicación */
     private OperacionPresentadorInterface presentador;
+    private ObjetosPantalla objetosPantalla;
 
     /**
      * Instancia los atributos de la clase implementada presentador.
@@ -26,59 +27,7 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
      */
     public OperacionModeloImpl(OperacionPresentadorInterface operationPresenter) {
         this.presentador = operationPresenter;
-        this.modelo= new OperacionModelo();
-    }
-
-    /**
-     * Realiza la operación de suma.
-     *
-     * @param num1 Primer sumando de la operación de suma
-     * @param num2 Segundo sumando de la operación de suma
-     */
-    @Override
-    public void sumar(double num1, double num2) {
-        modelo.setResultado(num1 + num2);
-        presentador.mostrarResultado(Double.toString(modelo.getResultado()));
-    }
-
-    /**
-     * Realiza la operación de resta.
-     *
-     * @param num1 Minuendo de la operación de resta
-     * @param num2 Sustraendo de la operación de resta
-     */
-    @Override
-    public void restar(double num1, double num2) {
-        modelo.setResultado(num1 - num2);
-        presentador.mostrarResultado(Double.toString(modelo.getResultado()));
-    }
-
-    /**
-     * Realiza la operación de multiplicación.
-     *
-     * @param num1 Primer factor de la operación de multiplicación
-     * @param num2 Segundo factor de la operación de multiplicación
-     */
-    @Override
-    public void multiplicar(double num1, double num2) {
-        modelo.setResultado(num1 * num2);
-        presentador.mostrarResultado(Double.toString(modelo.getResultado()));
-    }
-
-    /**
-     * Realiza la operación de división.
-     *
-     * @param num1 Dividendo de la operación de división
-     * @param num2 Divisor de la operación de división
-     */
-    @Override
-    public void dividir(double num1, double num2) {
-        if (num2 != 0) {
-            modelo.setResultado(num1 / num2);
-            presentador.mostrarResultado(Double.toString(modelo.getResultado()));
-        } else {
-            presentador.mostrarOperacionInvalida();
-        }
+        this.objetosPantalla= new ObjetosPantalla();
     }
 
     /**
@@ -88,21 +37,40 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
      */
     @Override
     public void sumarMemoria(double num1){
-        modelo.setNumeroMemoria(""+(Double.parseDouble(modelo.getNumeroMemoria())+num1));
-        presentador.mostrarNumeroMemoria(modelo.getNumeroMemoria());
-        presentador.mostrarOperadorMemoria("M+");
+        objetosPantalla.setNumeroMemoria(""+(Double.parseDouble(
+                objetosPantalla.getNumeroMemoria())+num1));
+        Double num=Double.parseDouble(objetosPantalla.getNumeroMemoria());
+        if(num.isNaN()){
+            objetosPantalla.setNumeroMemoria("");
+            presentador.mostrarNumeroMemoria(objetosPantalla.getNumeroMemoria());
+            presentador.mostrarOperadorMemoria("");
+            presentador.mostrarOperacionInvalida();
+        }else{
+            presentador.mostrarNumeroMemoria(objetosPantalla.getNumeroMemoria());
+            presentador.mostrarOperadorMemoria(" M+");
+        }
     }
 
     /**
      * Realiza la operación de resta en memoria.
      *
-     * @param num1 Sustraendo de la operación de resta en memoria
+     * @param num1 Minuendo de la operación de resta en memoria
      */
     @Override
     public void restarMemoria(double num1){
-        modelo.setNumeroMemoria(""+(Double.parseDouble(modelo.getNumeroMemoria())-num1));
-        presentador.mostrarNumeroMemoria(modelo.getNumeroMemoria());
-        presentador.mostrarOperadorMemoria("M-");
+        objetosPantalla.setNumeroMemoria(""+(Double.parseDouble(
+                objetosPantalla.getNumeroMemoria())-num1));
+        Double num=Double.parseDouble(objetosPantalla.getNumeroMemoria());
+        if(num.isNaN()){
+            presentador.mostrarOperacionInvalida();
+            objetosPantalla.setNumeroMemoria("");
+            presentador.mostrarNumeroMemoria(objetosPantalla.getNumeroMemoria());
+            presentador.mostrarOperadorMemoria("");
+        }else{
+
+            presentador.mostrarNumeroMemoria(objetosPantalla.getNumeroMemoria());
+            presentador.mostrarOperadorMemoria(" M-");
+        }
     }
 
     /**
@@ -113,64 +81,72 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
     @Override
     public void validarIngresoNumero(String numero){
         int contador=0;
-        if(modelo.getNumeroPantalla()!=null){
-            modelo.setNumeroPantalla(modelo.getNumeroPantalla()+numero);
+
+        if(objetosPantalla.getNumeroPantalla()!=null){
+            objetosPantalla.setNumeroPantalla(objetosPantalla.getNumeroPantalla()+numero);
         }else{
-            modelo.setNumeroPantalla(numero);
+            objetosPantalla.setNumeroPantalla(numero);
         }
-        if(modelo.getNumeroPantalla().charAt(0)=='.'){
-            modelo.setNumeroPantalla("0.");
-            presentador.mostrarResultado(modelo.getNumeroPantalla());
+        if(objetosPantalla.getNumeroPantalla().charAt(0)=='.'){
+            objetosPantalla.setNumeroPantalla("0.");
+            presentador.mostrarResultado(objetosPantalla.getNumeroPantalla());
         }else{
-            for(int i=1; i<modelo.getNumeroPantalla().length(); i++){
-                if(modelo.getNumeroPantalla().charAt(i)=='.'){
+            for(int i=1; i<objetosPantalla.getNumeroPantalla().length(); i++){
+                if(objetosPantalla.getNumeroPantalla().charAt(i)=='.'){
                     contador++;
                 }
             }
             if(contador==0||contador==1){
-                presentador.mostrarResultado(modelo.getNumeroPantalla());
+                presentador.mostrarResultado(objetosPantalla.getNumeroPantalla());
             }else{
-                modelo.setNumeroPantalla(modelo.getNumeroPantalla().substring(0
-                        ,modelo.getNumeroPantalla().length()-1));
-                presentador.mostrarResultado(modelo.getNumeroPantalla());
+                objetosPantalla.setNumeroPantalla(objetosPantalla.getNumeroPantalla().substring(0
+                        ,objetosPantalla.getNumeroPantalla().length()-1));
+                presentador.mostrarResultado(objetosPantalla.getNumeroPantalla());
             }
         }
+    }
+    /**
+     * Valida que la cadena sea ingresado de manera correcta.
+     *
+     * @param cadena Cadena que se intenta ingresar
+     */
+    @Override
+    public void validarIngresoCadena(String cadena){
+
+        if(objetosPantalla.getCadenaOperacion()!=null){
+            objetosPantalla.setCadenaOperacion(objetosPantalla.getCadenaOperacion()+cadena);
+        }else{
+            objetosPantalla.setCadenaOperacion(cadena);
+        }
+
+        presentador.mostrarCadenaOperacion(objetosPantalla.getCadenaOperacion());
+    }
+
+    /** Realiza la operación obtenida de la cadena*/
+    @Override
+    public void realizarOperacion(){
+        Numero resultado=
+                PostfijoResultadoModelo.TransformarPostfijoResultado(
+                        InfijoPostfijoModelo.TransformarInfijoPosfijo(
+                                objetosPantalla.getCadenaOperacion()));
+        if(resultado.getNumero().isNaN()){
+            presentador.mostrarOperacionInvalida();
+        }else{
+            presentador.mostrarResultado(resultado.getNumero().toString());
+        }
+
     }
 
     /** Borra el numero que se ha ingresado por pantalla */
     @Override
     public void vaciarNumeroPantalla(){
-        modelo.setNumeroPantalla("");
+        objetosPantalla.setNumeroPantalla("");
     }
 
-    /**
-     * Ingresa el primer número para la operación a realizar.
-     *
-     * @param numero Valor del primer número para la operación a realizar
-     */
+    /** Borra el contenido de la cadena de la operación */
     @Override
-    public void ingresarPrimerNumero(String numero){
-        modelo.setPrimerNumero(numero);
-    }
-
-    /**
-     * Ingresa el segundo número para la operación a realizar.
-     *
-     * @param numero Valor del segundo número para la operación a realizar
-     */
-    @Override
-    public void ingresarSegundoNumero(String numero){
-        modelo.setSegundorNumero(numero);
-    }
-
-    /**
-     * Ingresa el operador para la operación a realizar.
-     *
-     * @param operador Valor del operador para la operación a realizar
-     */
-    @Override
-    public void ingresarOperador(String operador){
-        modelo.setTipoOperacion(operador);
+    public void vaciarCadenaOperacion(){
+        objetosPantalla.setCadenaOperacion("");
     }
 
     /**
@@ -180,39 +156,39 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
      */
     @Override
     public void ingresarNumeroMemoria(String numero){
-        modelo.setNumeroMemoria(numero);
-        presentador.mostrarNumeroMemoria(modelo.getNumeroMemoria());
+        objetosPantalla.setNumeroMemoria(numero);
+        presentador.mostrarNumeroMemoria(objetosPantalla.getNumeroMemoria());
     }
 
-    /** Valida que se haya ingresado el primer número para la operación a realizar */
-    @Override
-    public String validarPrimerNumero(){
-        return modelo.getPrimerNumero();
-    }
-
-    /** Valida que se haya ingresado el segundo número para la operación a realizar */
-    @Override
-    public String validarSegundoNumero(){
-        return modelo.getSegundorNumero();
-    }
-
-    /** Valida que haya un operador para la operación a realizar */
-    @Override
-    public String validarOperador(){
-        return modelo.getTipoOperacion();
-    }
-
-    /** Valida que haya un número en memoria */
+    /**
+     * Valida que haya un número en memoria
+     *
+     * @return Número en memoria.
+     */
     @Override
     public String validarNumeroMemoria(){
-        return modelo.getNumeroMemoria();
+        return objetosPantalla.getNumeroMemoria();
     }
 
-    /** Devuelve el número ingresado en memoria */@Override
+    /** Devuelve el número ingresado en memoria */
+    @Override
     public void devolverNumeroMemoria(){
-        if(modelo.getNumeroMemoria()!=""){
-            presentador.mostrarNumeroMemoriaPantalla(modelo.getNumeroMemoria());
+        if(objetosPantalla.getNumeroMemoria()!=""){
+            presentador.mostrarNumeroMemoriaPantalla(objetosPantalla.getNumeroMemoria());
         }
+    }
+
+    /**
+     * Realiza el obtenerFactorial de un numero
+     *
+     * @return resultador del obtenerFactorial.
+     */
+    @Override
+    public Double obtenerFactorial(Double numero) {
+        if (numero == 0)
+            return 1.0;
+        else
+            return numero * obtenerFactorial(numero - 1);
     }
 }
 

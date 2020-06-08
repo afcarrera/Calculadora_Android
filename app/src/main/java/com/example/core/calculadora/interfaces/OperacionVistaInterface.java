@@ -7,7 +7,8 @@ package com.example.core.calculadora.interfaces;
  *  OperacionMainActivity.
  *
  * @author Alberto Carrera
- * @version 1.0, 31/05/2020
+ * @version 1.0, 07/06/2020
+ * @since 1.0, 31/05/2020
  */
 
 public interface OperacionVistaInterface {
@@ -43,4 +44,11 @@ public interface OperacionVistaInterface {
     /** Muestra el mensaje "Operación Inválida"
      * cuando una operación es inválida */
     void mostrarOperacionInvalida();
+
+    /**
+     * Muestra la cadena que contiene la operación.
+     *
+     * @param cadenaOperacion Cadena que contiene la operación
+     */
+    void mostrarCadenaOperacion(String cadenaOperacion);
 }

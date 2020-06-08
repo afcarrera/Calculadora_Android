@@ -10,9 +10,11 @@ import org.junit.runner.RunWith;
 
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.stubbing.Answer;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * OperacionModeloImplTest.java:
@@ -33,6 +35,12 @@ public class OperacionModeloImplTest {
     /** Modelo de la aplicación */
     private OperacionModeloImpl modelo;
 
+    /** Clase Número */
+    private Numero numero1;
+
+    /** Clase Número */
+    private Numero numero2;
+
     /**
      * Inicializa el atributo modelo e ingresa un número a memoria para testeo.
      *
@@ -42,6 +50,8 @@ public class OperacionModeloImplTest {
     public void setUp() throws Exception {
         modelo = new OperacionModeloImpl(presentador);
         modelo.ingresarNumeroMemoria("5");
+        numero1 = new Numero();
+        numero2 = new Numero();
     }
 
     /**
@@ -51,8 +61,11 @@ public class OperacionModeloImplTest {
      */
     @Test
     public void sumar() throws Exception {
-        modelo.sumar(1,2);
-        verify(presentador).mostrarResultado("3.0");
+        Numero resultado = new Numero();
+        resultado.setNumero(4.0);
+        numero1.setNumero(2.0);
+        numero2.setNumero(2.0);
+        assertEquals(Operacion.sumar(numero1,numero2).getNumero(), resultado.getNumero());
     }
 
     /**
@@ -62,8 +75,11 @@ public class OperacionModeloImplTest {
      */
     @Test
     public void restar() throws Exception {
-        modelo.restar(1,2);
-        verify(presentador).mostrarResultado("-1.0");
+        Numero resultado = new Numero();
+        resultado.setNumero(4.0);
+        numero1.setNumero(6.0);
+        numero2.setNumero(2.0);
+        assertEquals(Operacion.restar(numero1,numero2).getNumero(), resultado.getNumero());
     }
 
     /**
@@ -73,8 +89,11 @@ public class OperacionModeloImplTest {
      */
     @Test
     public void multiplicar() throws Exception {
-        modelo.multiplicar(1,2);
-        verify(presentador).mostrarResultado("2.0");
+        Numero resultado = new Numero();
+        resultado.setNumero(4.0);
+        numero1.setNumero(2.0);
+        numero2.setNumero(2.0);
+        assertEquals(Operacion.multiplicar(numero1,numero2).getNumero(), resultado.getNumero());
     }
 
     /**
@@ -84,8 +103,11 @@ public class OperacionModeloImplTest {
      */
     @Test
     public void dividir() throws Exception {
-        modelo.dividir(1,2);
-        verify(presentador).mostrarResultado("0.5");
+        Numero resultado = new Numero();
+        resultado.setNumero(1.0);
+        numero1.setNumero(2.0);
+        numero2.setNumero(2.0);
+        assertEquals(Operacion.dividir(numero1,numero2).getNumero(), resultado.getNumero());
     }
 
     /**
@@ -95,8 +117,11 @@ public class OperacionModeloImplTest {
      */
     @Test
     public void dividirParaCero() throws Exception {
-        modelo.dividir(1,0);
-        verify(presentador).mostrarOperacionInvalida();
+        Numero resultado = new Numero();
+        resultado.setNumero(2.0/0.0);
+        numero1.setNumero(2.0);
+        numero2.setNumero(0.0);
+        assertEquals(Operacion.dividir(numero1,numero2).getNumero(), resultado.getNumero());
     }
 
     /**
@@ -152,6 +177,17 @@ public class OperacionModeloImplTest {
     @Test
     public void devolverNumeroMemoria() throws Exception {
         verify(presentador).mostrarNumeroMemoria("5");
+    }
+
+    /**
+     * Prueba  del método obtenerFactorial de la clase OperacionModeloImpl.
+     *
+     * @throws Exception Excepción elevada durante el proceso de prueba
+     */
+    @Test
+    public void obtenerFactorial() throws Exception {
+        Double resultado=40320.0;
+        assertEquals(modelo.obtenerFactorial(8.0), resultado);
     }
 
 

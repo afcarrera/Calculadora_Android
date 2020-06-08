@@ -1,5 +1,7 @@
 package com.example.core.calculadora.interfaces;
 
+import com.example.core.calculadora.modelo.Numero;
+
 /**
  * OperacionModeloInterface.java:
  *
@@ -7,54 +9,25 @@ package com.example.core.calculadora.interfaces;
  *  OperacionPresentadorImpl.
  *
  * @author Alberto Carrera
- * @version 1.0, 31/05/2020
+ * @version 1.0, 07/06/2020
+ * @since 1.0, 31/05/2020
  */
 
 public interface OperacionModeloInterface {
 
     /**
-     * Realiza la operación de suma.
-     *
-     * @param num1 Primer sumando de la operación de suma
-     * @param num2 Segundo sumando de la operación de suma
-     */
-    void sumar(double num1, double num2);
-
-    /**
-     * Realiza la operación de resta.
-     *
-     * @param num1 Minuendo de la operación de resta
-     * @param num2 Sustraendo de la operación de resta
-     */
-    void restar(double num1, double num2);
-
-    /**
-     * Realiza la operación de multiplicación.
-     *
-     * @param num1 Primer factor de la operación de multiplicación
-     * @param num2 Segundo factor de la operación de multiplicación
-     */
-    void multiplicar(double num1, double num2);
-
-    /**
-     * Realiza la operación de división.
-     *
-     * @param num1 Dividendo de la operación de división
-     * @param num2 Divisor de la operación de división
-     */
-    void dividir(double num1, double num2);
-
-    /**
      * Realiza la operación de suma en memoria.
      *
      * @param num1 Sumando de la operación de suma en memoria
+     * @return Retorna la suma de dos números
      */
     void sumarMemoria(double num1);
 
     /**
      * Realiza la operación de resta en memoria.
      *
-     * @param num1 Sustraendo de la operación de resta en memoria
+     * @param num1 Minuendo de la operación de resta en memoria
+     * @return Retorna la resta de dos números
      */
     void restarMemoria(double num1);
 
@@ -65,51 +38,43 @@ public interface OperacionModeloInterface {
      */
     void validarIngresoNumero(String numero);
 
+    /**
+     * Valida que la cadena sea ingresado de manera correcta.
+     *
+     * @param cadena Cadena que se intenta ingresar
+     */
+    void validarIngresoCadena(String cadena);
+
+    /** Realiza la operación obtenida de la cadena */
+    void realizarOperacion();
+
     /** Borra el numero que se ha ingresado por pantalla */
     void vaciarNumeroPantalla();
 
-    /**
-     * Ingresa el primer número para la operación a realizar.
-     *
-     * @param numero Valor del primer número para la operación
-     */
-    void ingresarPrimerNumero(String numero);
+    /** Borra el contenido de la cadena de la operación */
+    void vaciarCadenaOperacion();
 
     /**
-     * Ingresa el segundo número para la operación a realizar.
+     * Ingresa número a memoria.
      *
-     * @param numero Valor del segundo número para la operación
+     * @param numero Valor del número que estará en memoria
      */
-    void ingresarSegundoNumero(String numero);
+    void ingresarNumeroMemoria(String numero);
 
     /**
-     * Ingresa el operador para la operación a realizar.
+     * Valida que haya un número en memoria
      *
-     * @param operador Valor del operador para la operación
+     * @return Número en memoria.
      */
-    void ingresarOperador(String operador);
-
-    /**
-     * Ingresa el número a memoria.
-     *
-     * @param numeroMemoria Valor del número a ingresar por memoria
-     */
-    void ingresarNumeroMemoria(String numeroMemoria);
-
-    /** Valida que se haya ingresado el primer número
-     * para la operación a realizar */
-    String validarPrimerNumero();
-
-    /** Valida que se haya ingresado el segundo número
-     * para la operación a realizar */
-    String validarSegundoNumero();
-
-    /** Valida que haya un operador para la operación a realizar */
-    String validarOperador();
-
-    /** Valida que haya un número ingresado en memoria */
     String validarNumeroMemoria();
 
     /** Devuelve el número ingresado en memoria */
     void devolverNumeroMemoria();
+
+    /**
+     * Realiza el obtenerFactorial de un numero
+     *
+     * @return Resultado del obtenerFactorial.
+     */
+    Double obtenerFactorial(Double numero);
 }

@@ -18,7 +18,8 @@ import com.example.core.calculadora.presentador.OperacionPresentadorImpl;
  *  Clase principal de la aplicación, implementa la interface OperacionVistaInterface.
  *
  * @author Alberto Carrera
- * @version 1.0, 31/05/2020
+ * @version 1.0, 07/06/2020
+ * @since 1.0, 31/05/2020
  */
 
 public class OperacionMainActivity extends AppCompatActivity implements OperacionVistaInterface {
@@ -26,11 +27,14 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
     /** Muestra lo que hay en la pantalla */
     private TextView txtPantalla;
 
-    /** Primer Número de la Operacion */
+    /** Primer Número de la Operación */
     private TextView txtNumeroMemoria;
 
-    /** Operador de la Operacion */
+    /** Operador de la Operación */
     private TextView txtOperadorMemoria;
+
+    /** Operación */
+    private TextView txtOperacion;
 
     /** Boton número 1 */
     private Button btn1;
@@ -77,6 +81,12 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
     /** Boton operación de división */
     private Button btnDivisión;
 
+    /** Boton operación de división */
+    private Button btnExponente;
+
+    /** Boton operación de división */
+    private Button btnFactorial;
+
     /** Boton operación de igual */
     private Button btnIgual;
 
@@ -107,6 +117,7 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
         txtPantalla = (TextView)findViewById(R.id.txtPantalla);
         txtNumeroMemoria = (TextView)findViewById(R.id.txtNumeroMemoria);
         txtOperadorMemoria = (TextView)findViewById(R.id.txtOperadorMemoria);
+        txtOperacion = (TextView)findViewById(R.id.txtOperacion);
         btn0 = (Button)findViewById(R.id.btnCero);
         btn1 = (Button)findViewById(R.id.btnUno);
         btn2 = (Button)findViewById(R.id.btnDos);
@@ -127,6 +138,8 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
         btnMMenos = (Button)findViewById(R.id.btnMMenos);
         btnMR = (Button)findViewById(R.id.btnMR);
         btnAC = (Button)findViewById(R.id.btnAC);
+        btnExponente = (Button)findViewById(R.id.btnExponente);
+        btnFactorial = (Button)findViewById(R.id.btnFactorial);
 
         btn0.setOnClickListener(listenerIngresarNumero);
         btn1.setOnClickListener(listenerIngresarNumero);
@@ -143,11 +156,13 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
         btnResta.setOnClickListener(listenerSeleccionarOperacion);
         btnMultiplicación.setOnClickListener(listenerSeleccionarOperacion);
         btnDivisión.setOnClickListener(listenerSeleccionarOperacion);
+        btnExponente.setOnClickListener(listenerSeleccionarOperacion);
         btnIgual.setOnClickListener(listenerSeleccionarOperacion);
         btnMPlus.setOnClickListener(listenerIngresarMemoria);
         btnMMenos.setOnClickListener(listenerIngresarMemoria);
         btnMR.setOnClickListener(listenerIngresarMemoria);
         btnAC.setOnClickListener(listenerBorrarTodo);
+        btnFactorial.setOnClickListener(listenerFactorial);
 
         presentador = new OperacionPresentadorImpl(this);
     }
@@ -180,7 +195,15 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
     private View.OnClickListener listenerBorrarTodo = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            presentador.borrarTodo(view,txtPantalla);
+            presentador.borrarTodo(view,txtPantalla,txtOperacion);
+        }
+    };
+
+    /** Escucha el botón para realizar la operación del Factorial. */
+    private View.OnClickListener listenerFactorial = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            presentador.obtenerFactorial(view,txtPantalla);
         }
     };
 
@@ -229,6 +252,17 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
     @Override
     public void mostrarOperacionInvalida() {
         Toast.makeText(this, "Operación Invalida", Toast.LENGTH_SHORT).show();
+    }
+
+
+    /**
+     * Muestra la cadena que contiene la operación.
+     *
+     * @param cadenaOperacion Cadena que contiene la operación
+     */
+    @Override
+    public void mostrarCadenaOperacion(String cadenaOperacion){
+        txtOperacion.setText(cadenaOperacion);
     }
 }
 

@@ -10,7 +10,8 @@ import android.widget.TextView;
  *  OperacionPresentadorImpl.
  *
  * @author Alberto Carrera
- * @version 1.0, 31/05/2020
+ * @version 1.0, 07/06/2020
+ * @since 1.0, 31/05/2020
  */
 
 public interface OperacionPresentadorInterface {
@@ -50,6 +51,13 @@ public interface OperacionPresentadorInterface {
     void mostrarOperacionInvalida();
 
     /**
+     * Muestra la cadena que contiene la operación.
+     *
+     * @param cadenaOperacion Cadena que contiene la operación
+     */
+    void mostrarCadenaOperacion(String cadenaOperacion);
+
+    /**
      * Valida que el numero sea ingresado de manera correcta.
      *
      * @param view Vista de la aplicación
@@ -74,11 +82,20 @@ public interface OperacionPresentadorInterface {
     void ingresarNumeroMemoria(View view, TextView txtPantalla);
 
     /**
-     * Borra todas las operaciones y numeros.
+     * Obtiene el obtenerFactorial de un número.
      *
      * @param view Vista de la aplicación
      * @param txtPantalla Número ingresado por pantalla
      */
-    void borrarTodo(View view, TextView txtPantalla);
+    void obtenerFactorial(View view, TextView txtPantalla);
+
+    /**
+     * Borra todas las operaciones y numeros.
+     *
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
+     * @param txtCadenaOperacion Cadena de la operación
+     */
+    void borrarTodo(View view, TextView txtPantalla, TextView txtCadenaOperacion);
 }
 
