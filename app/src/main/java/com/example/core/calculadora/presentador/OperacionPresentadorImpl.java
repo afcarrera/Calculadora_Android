@@ -169,7 +169,8 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
             if(numero>=0){
                 modelo.validarIngresoCadena(""+numero);
             }else{
-                modelo.validarIngresoCadena("(0"+numero+")");
+                numero=numero*(-1);
+                modelo.validarIngresoCadena("(0─"+numero+")");
             }
             if(operador=="="){
                 modelo.realizarOperacion();
@@ -241,7 +242,7 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
             vista.mostrarOperacionInvalida();
         }else{
             if (modelo != null) {
-                if(numero<=170){
+                if(numero<=170&&numero>=0){
                     if(numero%1==0){
                         resultado=modelo.obtenerFactorial(numero);
                         modelo.vaciarNumeroPantalla();
