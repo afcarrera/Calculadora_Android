@@ -20,9 +20,11 @@ public class PostfijoResultadoModelo {
      * @param postfijo Cadena en postfijo
      * @return Retorna el resultado final de la operación
      */
-    public static Numero TransformarPostfijoResultado(String postfijo){//<- Entra la expresion postfija con espacios
+    public static Numero TransformarPostfijoResultado(String postfijo){//<- Entra la expresion
+        // postfija con espacios
         String expr = postfijo;  //<- expr va a contener lo que tenia postfijo
-        String[] post = expr.split(" ");  //<- El metodo split dividirá por cada espacio y almacenará cada division en un array
+        String[] post = expr.split(" ");  //<- El metodo split dividirá por cada espacio
+        // y almacenará cada division en un array
         Numero resultado = new Numero();
 
         //Declaración de las pilas
@@ -35,13 +37,16 @@ public class PostfijoResultadoModelo {
         //Algoritmo de Evaluación Postfija
         String operadores = "+-x/^"; //<- declarar varibale con los operadores
         while (!E.isEmpty()) {//<- mientras que E contenga algo
-            if (operadores.contains("" + E.peek())) { //<- La pila E solo contdrá operadores, la pila S operandos
-            P.push(Evaluar(E.pop(), P.pop(), P.pop()).getNumero().toString());//<-Apilar en P la operacion (Operador, num1, num2)
+            if (operadores.contains("" + E.peek())) { //<- La pila E solo contdrá operadores,
+                // la pila S operandos
+            P.push(Evaluar(E.pop(), P.pop(), P.pop()).getNumero().toString());//<-Apilar en
+                // P la operacion (Operador, num1, num2)
             }else {
             P.push(E.pop());//<- Apilar en P lo desapilado en E
             }
         }
-        resultado.setNumero(Double.parseDouble(P.peek())); //<- Igualacion en una variable el resultado encontrado en el ultimo nivel de P, P.peek() para que pueda ser retornada
+        resultado.setNumero(Double.parseDouble(P.peek())); //<- Igualacion en una variable
+        // el resultado encontrado en el ultimo nivel de P, P.peek() para que pueda ser retornada
 
         return resultado;
      }
