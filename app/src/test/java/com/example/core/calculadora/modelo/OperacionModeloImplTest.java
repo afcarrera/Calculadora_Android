@@ -194,9 +194,9 @@ public class OperacionModeloImplTest {
     @Test
     public void obtenerModulo() throws Exception {
         Numero resultado = new Numero();
-        resultado.setNumero(-13.0);
-        numero1.setNumero(-13.0);
-        numero2.setNumero(64.0);
+        resultado.setNumero(-2.0);
+        numero1.setNumero(-5.0);
+        numero2.setNumero(-3.0);
         assertEquals(Operacion.obtenerModulo(numero1,numero2).getNumero(), resultado.getNumero());
     }
 
