@@ -92,6 +92,29 @@ public class Operacion {
     public static Numero obtenerModulo(Numero num1, Numero num2) {
         Numero resultado=new Numero();
         try{
+        if(num1.getNumero()<0&&num2.getNumero()<0){
+            resultado.setNumero(num1.getNumero()%(num2.getNumero()));
+            resultado.setNumero((-1)*resultado.getNumero());
+            return resultado;
+        }
+        if(num1.getNumero()<0&&num2.getNumero()>0){
+            while (num1.getNumero()<0){
+                num1.setNumero(num1.getNumero()+num2.getNumero());
+            }
+            resultado.setNumero(num1.getNumero()%(num2.getNumero()));
+            return resultado;
+        }
+        if(num1.getNumero()>0&&num2.getNumero()<0){
+            num1.setNumero(num1.getNumero()*(-1));
+            num2.setNumero(num2.getNumero()*(-1));
+            while (num1.getNumero()<0){
+                num1.setNumero(num1.getNumero()+num2.getNumero());
+            }
+            resultado.setNumero(num1.getNumero()%(num2.getNumero()));
+            resultado.setNumero(resultado.getNumero()*(-1));
+            return resultado;
+        }
+
             resultado.setNumero(num1.getNumero()%(num2.getNumero()));
         }catch (ArithmeticException e){
 
