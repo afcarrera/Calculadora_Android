@@ -102,6 +102,9 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
     /** Boton MR */
     private Button btnMR;
 
+    /** Boton C */
+    private Button btnC;
+
     /** Boton AC */
     private Button btnAC;
 
@@ -142,6 +145,7 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
             btnMPlus = (Button) findViewById(R.id.btnMPlus);
             btnMMenos = (Button) findViewById(R.id.btnMMenos);
             btnMR = (Button) findViewById(R.id.btnMR);
+            btnC = (Button) findViewById(R.id.btnC);
             btnAC = (Button) findViewById(R.id.btnAC);
             btnExponente = (Button) findViewById(R.id.btnExponente);
             btnFactorial = (Button) findViewById(R.id.btnFactorial);
@@ -166,6 +170,7 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
             btnMPlus.setOnClickListener(listenerIngresarMemoria);
             btnMMenos.setOnClickListener(listenerIngresarMemoria);
             btnMR.setOnClickListener(listenerIngresarMemoria);
+            btnC.setOnClickListener(listenerBorrarPantalla);
             btnAC.setOnClickListener(listenerBorrarTodo);
             btnFactorial.setOnClickListener(listenerFactorial);
         }catch (Exception e){
@@ -205,6 +210,14 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
         @Override
         public void onClick(View view) {
             presentador.borrarTodo(view,txtPantalla,txtOperacion);
+        }
+    };
+
+    /** Escucha el botón para borrar lo que hay en pantalla. */
+    private View.OnClickListener listenerBorrarPantalla = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            presentador.borrarPantalla(view,txtPantalla);
         }
     };
 

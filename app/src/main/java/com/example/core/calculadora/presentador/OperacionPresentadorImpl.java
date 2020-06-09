@@ -271,10 +271,23 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
      * @param txtPantalla Número ingresado por pantalla
      * @param txtCadenaOperacion Cadena de la operación
      */
+    @Override
     public void borrarTodo(View view, TextView txtPantalla, TextView txtCadenaOperacion){
         txtPantalla.setText("0");
         txtCadenaOperacion.setText(null);
         modelo.vaciarNumeroPantalla();
         modelo.vaciarCadenaOperacion();
+    }
+
+    /**
+     * Borra el numero que esta en pantalla
+     *
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
+     */
+    @Override
+    public void borrarPantalla(View view, TextView txtPantalla){
+        txtPantalla.setText("0");
+        modelo.vaciarNumeroPantalla();
     }
 }

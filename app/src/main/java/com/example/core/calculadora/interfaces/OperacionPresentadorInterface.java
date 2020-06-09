@@ -97,5 +97,13 @@ public interface OperacionPresentadorInterface {
      * @param txtCadenaOperacion Cadena de la operación
      */
     void borrarTodo(View view, TextView txtPantalla, TextView txtCadenaOperacion);
+
+    /**
+     * Borra el numero que esta en pantalla
+     *
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
+     */
+    public void borrarPantalla(View view, TextView txtPantalla);
 }
 
