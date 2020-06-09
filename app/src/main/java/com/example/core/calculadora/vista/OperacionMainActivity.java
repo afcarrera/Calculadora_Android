@@ -81,6 +81,9 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
     /** Boton operación de división */
     private Button btnDivisión;
 
+    /** Boton operación de módulo */
+    private Button btnModulo;
+
     /** Boton operación de división */
     private Button btnExponente;
 
@@ -134,6 +137,7 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
             btnResta = (Button) findViewById(R.id.btnResta);
             btnMultiplicación = (Button) findViewById(R.id.btnMultiplicacion);
             btnDivisión = (Button) findViewById(R.id.btnDivision);
+            btnModulo = (Button) findViewById(R.id.btnModulo);
             btnIgual = (Button) findViewById(R.id.btnIgual);
             btnMPlus = (Button) findViewById(R.id.btnMPlus);
             btnMMenos = (Button) findViewById(R.id.btnMMenos);
@@ -156,6 +160,7 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
             btnResta.setOnClickListener(listenerSeleccionarOperacion);
             btnMultiplicación.setOnClickListener(listenerSeleccionarOperacion);
             btnDivisión.setOnClickListener(listenerSeleccionarOperacion);
+            btnModulo.setOnClickListener(listenerSeleccionarOperacion);
             btnExponente.setOnClickListener(listenerSeleccionarOperacion);
             btnIgual.setOnClickListener(listenerSeleccionarOperacion);
             btnMPlus.setOnClickListener(listenerIngresarMemoria);

@@ -1,6 +1,5 @@
 package com.example.core.calculadora.modelo;
 import java.util.Stack;
-import java.util.ArrayList;
 
 /**
  * NotacionInversa.java:
@@ -36,7 +35,7 @@ public class NotacionInversa {
             E.push(post[i]);
         }
         //Algoritmo de Evaluación Postfija
-        String operadores = "+─x/^"; //<- declarar varibale con los operadores
+        String operadores = "+─x/^%"; //<- declarar varibale con los operadores
         while (!E.isEmpty()) {//<- mientras que E contenga algo
             if (operadores.contains("" + E.peek())) { //<- La pila E solo contdrá operadores,
                 // la pila S operandos
@@ -76,6 +75,9 @@ public class NotacionInversa {
         }
         if (operando.equals("^")){
             return Operacion.potenciar(new Numero(numero1),new Numero(numero2));
+        }
+        if (operando.equals("%")){
+            return Operacion.obtenerModulo(new Numero(numero1),new Numero(numero2));
         }
         return new Numero(0.0);
       }
@@ -161,7 +163,7 @@ public class NotacionInversa {
     private static String Depurar(String cadenaInfijo) {
         cadenaInfijo = cadenaInfijo.replaceAll("\\s+", ""); //<- Elimina espacios en blanco
         cadenaInfijo = "(" + cadenaInfijo + ")";
-        String simbols = "+─x/^()";
+        String simbols = "+─x/^%()";
         String str = "";
 
         for (int i = 0; i < cadenaInfijo.length(); i++) {//<- Deja espacios entre operadores
@@ -184,7 +186,7 @@ public class NotacionInversa {
         if (cadenaOperadores.equals("^")){
             prf = 5;
         }
-        if (cadenaOperadores.equals("x") || cadenaOperadores.equals("/")){
+        if (cadenaOperadores.equals("x") || cadenaOperadores.equals("/")|| cadenaOperadores.equals("%")){
             prf = 4;
         }
         if (cadenaOperadores.equals("+") || cadenaOperadores.equals("─")){

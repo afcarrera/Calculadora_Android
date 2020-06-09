@@ -1,8 +1,6 @@
 package com.example.core.calculadora.modelo;
 
 import com.example.core.calculadora.interfaces.OperacionPresentadorInterface;
-import com.example.core.calculadora.presentador.OperacionPresentadorImpl;
-import com.example.core.calculadora.vista.OperacionMainActivity;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,11 +8,9 @@ import org.junit.runner.RunWith;
 
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.mockito.stubbing.Answer;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 /**
  * OperacionModeloImplTest.java:
@@ -190,5 +186,18 @@ public class OperacionModeloImplTest {
         assertEquals(modelo.obtenerFactorial(8.0), resultado);
     }
 
+    /**
+     * Prueba  del método obtenerModulo de la clase OperacionModeloImpl.
+     *
+     * @throws Exception Excepción elevada durante el proceso de prueba
+     */
+    @Test
+    public void obtenerModulo() throws Exception {
+        Numero resultado = new Numero();
+        resultado.setNumero(-13.0);
+        numero1.setNumero(-13.0);
+        numero2.setNumero(64.0);
+        assertEquals(Operacion.obtenerModulo(numero1,numero2).getNumero(), resultado.getNumero());
+    }
 
 }

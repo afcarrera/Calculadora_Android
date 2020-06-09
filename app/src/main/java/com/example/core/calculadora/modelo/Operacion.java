@@ -82,4 +82,22 @@ public class Operacion {
         }
         return resultado;
     }
+
+    /**
+     * Realiza la operación de obtenerModulo.
+     *
+     * @param num1 Dividendo de la operación de modulo
+     * @param num2 Divisor de la operación de modulo
+     */
+    public static Numero obtenerModulo(Numero num1, Numero num2) {
+        Numero resultado=new Numero();
+        try{
+            resultado.setNumero(num1.getNumero()%(num2.getNumero()));
+        }catch (ArithmeticException e){
+
+        }catch (Exception e){
+
+        }
+        return resultado;
+    }
 }

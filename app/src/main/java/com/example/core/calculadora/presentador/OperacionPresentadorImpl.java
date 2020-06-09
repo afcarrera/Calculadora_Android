@@ -155,6 +155,9 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
                 case R.id.btnDivision:
                     operador = "/";
                     break;
+                case R.id.btnModulo:
+                    operador = "%";
+                    break;
                 case R.id.btnExponente:
                     operador = "^";
                     break;
