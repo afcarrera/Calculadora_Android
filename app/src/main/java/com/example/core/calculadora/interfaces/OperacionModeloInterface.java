@@ -6,7 +6,7 @@ import com.example.core.calculadora.modelo.Numero;
  * OperacionModeloInterface.java:
  *
  *  Interface con los métodos a implementarse en la clase
- *  OperacionPresentadorImpl.
+ *  OperacionModeloImpl.
  *
  * @author Alberto Carrera
  * @version 1.0, 07/06/2020

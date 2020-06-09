@@ -20,7 +20,7 @@ public class ObjetosPantalla {
     /** Número en memoria */
     private String numeroMemoria;
 
-    /** consturctor de la clase */
+    /** Consturctor de la clase ObjetosPantalla*/
     public ObjetosPantalla(){
         this.cadenaOperacion ="";
         this.numeroMemoria="";

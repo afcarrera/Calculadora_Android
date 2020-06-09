@@ -1,7 +1,6 @@
 package com.example.core.calculadora.modelo;
 import com.example.core.calculadora.interfaces.OperacionModeloInterface;
 import com.example.core.calculadora.interfaces.OperacionPresentadorInterface;
-import java.lang.Object;
 
 /**
  * OperacionModeloImpl.java:
@@ -18,7 +17,10 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
 
     /** Presentador de la aplicación */
     private OperacionPresentadorInterface presentador;
+
+    /** Cajas de texto de la aplicación */
     private ObjetosPantalla objetosPantalla;
+
 
     /**
      * Instancia los atributos de la clase implementada presentador.
@@ -126,9 +128,8 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
     @Override
     public void realizarOperacion(){
         Numero resultado=
-                PostfijoResultadoModelo.TransformarPostfijoResultado(
-                        InfijoPostfijoModelo.TransformarInfijoPosfijo(
-                                objetosPantalla.getCadenaOperacion()));
+                NotacionInversa.TransformarPostfijoResultado(
+                                objetosPantalla.getCadenaOperacion());
         if(resultado.getNumero().isNaN()){
             presentador.mostrarOperacionInvalida();
         }else{

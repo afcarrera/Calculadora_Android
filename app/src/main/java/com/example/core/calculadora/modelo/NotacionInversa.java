@@ -3,7 +3,7 @@ import java.util.Stack;
 import java.util.ArrayList;
 
 /**
- * PostfijoResultadoModelo.java:
+ * NotacionInversa.java:
  *
  *  Clase que transforma una operación de postfijo a un resultado.
  *
@@ -12,17 +12,18 @@ import java.util.ArrayList;
  * @since 1.0, 31/05/2020
  */
 
-public class PostfijoResultadoModelo {
+public class NotacionInversa {
 
     /**
      * Transforma de notacion postfija a resultado
      *
-     * @param postfijo Cadena en postfijo
+     * @param cadenaPostfijo Cadena en postfijo
      * @return Retorna el resultado final de la operación
      */
-    public static Numero TransformarPostfijoResultado(String postfijo){//<- Entra la expresion
+    public static Numero TransformarPostfijoResultado(String cadenaPostfijo){//<- Entra la expresion
+        cadenaPostfijo=TransformarInfijoPosfijo(cadenaPostfijo);
         // postfija con espacios
-        String expr = postfijo;  //<- expr va a contener lo que tenia postfijo
+        String expr = cadenaPostfijo;  //<- expr va a contener lo que tenia postfijo
         String[] post = expr.split(" ");  //<- El metodo split dividirá por cada espacio
         // y almacenará cada division en un array
         Numero resultado = new Numero();
@@ -35,7 +36,7 @@ public class PostfijoResultadoModelo {
             E.push(post[i]);
         }
         //Algoritmo de Evaluación Postfija
-        String operadores = "+-x/^"; //<- declarar varibale con los operadores
+        String operadores = "+─x/^"; //<- declarar varibale con los operadores
         while (!E.isEmpty()) {//<- mientras que E contenga algo
             if (operadores.contains("" + E.peek())) { //<- La pila E solo contdrá operadores,
                 // la pila S operandos
@@ -53,35 +54,149 @@ public class PostfijoResultadoModelo {
 
     /** Evalua la operación a realizar.
      *
-     * @param op Valor del operando
-     * @param n2 Valor del numero 2
-     * @param n1 Valor del numero 1
+     * @param operando Valor del operando
+     * @param num2 Valor del numero 2
+     * @param num1 Valor del numero 1
      * @return Retorna el resultado de la operación realizada
      */
-    private static Numero Evaluar(String op, String n2, String n1) {
-        ArrayList <Numero> numeros = new ArrayList<Numero>();
-        for(int i=0;i<3;i++){
-            Numero n = new Numero();
-            numeros.add(n);
+    private static Numero Evaluar(String operando, String num2, String num1) {
+        Double numero1=Double.parseDouble(num1);
+        Double numero2=Double.parseDouble(num2);
+        if (operando.equals("+")){
+            return Operacion.sumar(new Numero(numero1),new Numero(numero2));
         }
-        numeros.get(0).setNumero(Double.parseDouble(n1));
-        numeros.get(1).setNumero(Double.parseDouble(n2));
-        numeros.get(2).setNumero(0.0);
-        if (op.equals("+")){
-            return Operacion.sumar(numeros.get(0),numeros.get(1));
+        if (operando.equals("─")){
+            return Operacion.restar(new Numero(numero1),new Numero(numero2));
         }
-        if (op.equals("-")){
-            return Operacion.restar(numeros.get(0),numeros.get(1));
+        if (operando.equals("x")){
+            return Operacion.multiplicar(new Numero(numero1),new Numero(numero2));
         }
-        if (op.equals("x")){
-            return Operacion.multiplicar(numeros.get(0),numeros.get(1));
+        if (operando.equals("/")){
+            return Operacion.dividir(new Numero(numero1),new Numero(numero2));
         }
-        if (op.equals("/")){
-            return Operacion.dividir(numeros.get(0),numeros.get(1));
+        if (operando.equals("^")){
+            return Operacion.potenciar(new Numero(numero1),new Numero(numero2));
         }
-        if (op.equals("^")){
-            return Operacion.potenciar(numeros.get(0),numeros.get(1));
-        }
-        return numeros.get(2);
+        return new Numero(0.0);
       }
+
+    /**
+     * Transforma de notación infija a postfija
+     *
+     * @param cadenaInfijo Cadena en infijo
+     * @return Retorna la notación  postfija
+     */
+    public static String TransformarInfijoPosfijo(String cadenaInfijo){//<- entra la expresion infija
+        String postfij = null; //<- Inicializando variable postfijo, será usada al final
+        String expr = Depurar(cadenaInfijo); //<- Depurando la expresion infija,
+        // por si llega a tener espacios innecesarios o algo por el estilo
+        String[] arrayInfix = expr.split(" "); //<- mediante medodo split
+        // meteremos cada caracter en array por cada espacio encontrado
+
+        //Declaración de las pilas
+        Stack <String> E = new Stack <String> (); //<- Pila entrada
+        Stack <String> P = new Stack <String> (); //<- Pila temporal para operadores
+        Stack <String> S = new Stack <String> (); //<- Pila salida
+
+        for (int i=arrayInfix.length-1; i>=0;i--){//<- Añadiendo el array a la Pila de entrada (E)
+            E.push(arrayInfix[i]);
+        }
+        try {
+            //Algoritmo Infijo a Postfijo
+            while (!E.isEmpty()) { //<- Mientras que la pila E contenga algo
+
+                switch (DefinirPreferencia(E.peek())){
+                    //Caso para apertura de parentesis
+                    case 1:
+                        P.push(E.pop());//<- apilar en P lo desapilado por E (
+                        break;
+                    //Caso para suma o resta
+                    case 3:
+                        while(DefinirPreferencia(P.peek()) >= DefinirPreferencia(E.peek())) {
+                            S.push(P.pop());//<- apilar en S lo desapiplado en P
+                        }
+                        P.push(E.pop());//<- apilar en P lo desapilado en E
+                        break;
+                    //Caso para productos y cocientes
+                    case 4:
+                        while(DefinirPreferencia(P.peek()) >= DefinirPreferencia(E.peek())) {
+                            S.push(P.pop());//<- apilar en S lo desapiplado en P
+                        }
+                        P.push(E.pop());//<- apilar en P lo desapilado en E
+                        break;
+                    //Caso para parentesis cerrados
+                    case 2:
+                        while(!P.peek().equals("(")) {
+                            S.push(P.pop());//<- apilar en S lo desapilado en P )
+                        }
+                        P.pop();//<- Desapilar en P
+                        E.pop();//<- Desapilar en E
+                        break;
+                    //Caso para potencias
+                    case 5:
+                        while(DefinirPreferencia(P.peek()) >= DefinirPreferencia(E.peek())) {
+                            S.push(P.pop());//<- apilar en S lo desapiplado en P
+                        }
+                        P.push(E.pop());//<- apilar en P lo desapilado en E
+                        break;
+                    //Cuaquier otro caso
+                    default:
+                        S.push(E.pop());  //<- apilar en S lo desapilado en E
+                }
+            }
+            String infij = expr.replace(" ", ""); //<- Eliminacion de
+            // `impurezas´ en la expresiones algebraicas
+            postfij = S.toString().replaceAll("[\\]\\[,]", "");
+
+        }catch(Exception ex){
+        }
+        return postfij;
+    }
+
+    /** Depura la expresión infija
+     *
+     * @param cadenaInfijo Cadena en infijo
+     * @return Retorna expresión depurada
+     */
+    private static String Depurar(String cadenaInfijo) {
+        cadenaInfijo = cadenaInfijo.replaceAll("\\s+", ""); //<- Elimina espacios en blanco
+        cadenaInfijo = "(" + cadenaInfijo + ")";
+        String simbols = "+─x/^()";
+        String str = "";
+
+        for (int i = 0; i < cadenaInfijo.length(); i++) {//<- Deja espacios entre operadores
+            if (simbols.contains("" + cadenaInfijo.charAt(i))) {
+                str += " " + cadenaInfijo.charAt(i) + " ";
+            }else str += cadenaInfijo.charAt(i);
+        }
+        return str.replaceAll("\\s+", " ").trim();
+    }
+
+    /**
+     * Define la jerarquia de los operadores
+     *
+     * @param cadenaOperadores Cadena de operadores
+     * @return Retorna el valor de la jerarquia de los operadores
+     */
+    private static int DefinirPreferencia(String cadenaOperadores) {
+        int prf=0;
+
+        if (cadenaOperadores.equals("^")){
+            prf = 5;
+        }
+        if (cadenaOperadores.equals("x") || cadenaOperadores.equals("/")){
+            prf = 4;
+        }
+        if (cadenaOperadores.equals("+") || cadenaOperadores.equals("─")){
+            prf = 3;
+        }
+        if (cadenaOperadores.equals(")")){
+            prf=2;
+        }
+        if (cadenaOperadores.equals("(")){
+            prf = 1;
+        }
+        return prf;
+    }
+
 }

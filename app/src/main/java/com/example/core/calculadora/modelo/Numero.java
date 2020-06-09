@@ -14,9 +14,14 @@ public class Numero {
     /** Un número */
     private Double numero;
 
-    /** Consturctor de la clase */
+    /** Consturctor vacio de la clase Numero*/
     public Numero(){
         numero=0.0;
+    }
+
+    /** Consturctor de la clase Numero*/
+    public Numero(Double numero){
+        this.numero=numero;
     }
 
     /** Obtiene un número */

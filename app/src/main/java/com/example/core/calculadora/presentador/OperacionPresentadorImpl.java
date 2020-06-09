@@ -147,7 +147,7 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
                     operador = "+";
                     break;
                 case R.id.btnResta:
-                    operador = "-";
+                    operador = "─";
                     break;
                 case R.id.btnMultiplicacion:
                     operador = "x";
@@ -241,12 +241,20 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
             vista.mostrarOperacionInvalida();
         }else{
             if (modelo != null) {
-                if(numero%1==0){
-                    resultado=modelo.obtenerFactorial(numero);
+                if(numero<=170){
+                    if(numero%1==0){
+                        resultado=modelo.obtenerFactorial(numero);
+                        modelo.vaciarNumeroPantalla();
+                        vista.mostrarResultado(resultado.toString());
+                    }else{
+                        vista.mostrarOperacionInvalida();
+                    }
+                }else if(numero <0){
+                    vista.mostrarOperacionInvalida();
+                }else{
+                    resultado=1/0.0;
                     modelo.vaciarNumeroPantalla();
                     vista.mostrarResultado(resultado.toString());
-                }else{
-                    vista.mostrarOperacionInvalida();
                 }
             }
         }

@@ -114,55 +114,59 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        txtPantalla = (TextView)findViewById(R.id.txtPantalla);
-        txtNumeroMemoria = (TextView)findViewById(R.id.txtNumeroMemoria);
-        txtOperadorMemoria = (TextView)findViewById(R.id.txtOperadorMemoria);
-        txtOperacion = (TextView)findViewById(R.id.txtOperacion);
-        btn0 = (Button)findViewById(R.id.btnCero);
-        btn1 = (Button)findViewById(R.id.btnUno);
-        btn2 = (Button)findViewById(R.id.btnDos);
-        btn3 = (Button)findViewById(R.id.btnTres);
-        btn4 = (Button)findViewById(R.id.btnCuatro);
-        btn5 = (Button)findViewById(R.id.btnCinco);
-        btn6 = (Button)findViewById(R.id.btnSeis);
-        btn7 = (Button)findViewById(R.id.btnSiete);
-        btn8 = (Button)findViewById(R.id.btnOcho);
-        btn9 = (Button)findViewById(R.id.btnNueve);
-        btnPunto = (Button)findViewById(R.id.btnPunto);
-        btnSuma = (Button)findViewById(R.id.btnSuma);
-        btnResta = (Button)findViewById(R.id.btnResta);
-        btnMultiplicación = (Button)findViewById(R.id.btnMultiplicacion);
-        btnDivisión = (Button)findViewById(R.id.btnDivision);
-        btnIgual = (Button)findViewById(R.id.btnIgual);
-        btnMPlus = (Button)findViewById(R.id.btnMPlus);
-        btnMMenos = (Button)findViewById(R.id.btnMMenos);
-        btnMR = (Button)findViewById(R.id.btnMR);
-        btnAC = (Button)findViewById(R.id.btnAC);
-        btnExponente = (Button)findViewById(R.id.btnExponente);
-        btnFactorial = (Button)findViewById(R.id.btnFactorial);
+        try {
+            txtPantalla = (TextView) findViewById(R.id.txtPantalla);
+            txtNumeroMemoria = (TextView) findViewById(R.id.txtNumeroMemoria);
+            txtOperadorMemoria = (TextView) findViewById(R.id.txtOperadorMemoria);
+            txtOperacion = (TextView) findViewById(R.id.txtOperacion);
+            btn0 = (Button) findViewById(R.id.btnCero);
+            btn1 = (Button) findViewById(R.id.btnUno);
+            btn2 = (Button) findViewById(R.id.btnDos);
+            btn3 = (Button) findViewById(R.id.btnTres);
+            btn4 = (Button) findViewById(R.id.btnCuatro);
+            btn5 = (Button) findViewById(R.id.btnCinco);
+            btn6 = (Button) findViewById(R.id.btnSeis);
+            btn7 = (Button) findViewById(R.id.btnSiete);
+            btn8 = (Button) findViewById(R.id.btnOcho);
+            btn9 = (Button) findViewById(R.id.btnNueve);
+            btnPunto = (Button) findViewById(R.id.btnPunto);
+            btnSuma = (Button) findViewById(R.id.btnSuma);
+            btnResta = (Button) findViewById(R.id.btnResta);
+            btnMultiplicación = (Button) findViewById(R.id.btnMultiplicacion);
+            btnDivisión = (Button) findViewById(R.id.btnDivision);
+            btnIgual = (Button) findViewById(R.id.btnIgual);
+            btnMPlus = (Button) findViewById(R.id.btnMPlus);
+            btnMMenos = (Button) findViewById(R.id.btnMMenos);
+            btnMR = (Button) findViewById(R.id.btnMR);
+            btnAC = (Button) findViewById(R.id.btnAC);
+            btnExponente = (Button) findViewById(R.id.btnExponente);
+            btnFactorial = (Button) findViewById(R.id.btnFactorial);
+            btn0.setOnClickListener(listenerIngresarNumero);
+            btn1.setOnClickListener(listenerIngresarNumero);
+            btn2.setOnClickListener(listenerIngresarNumero);
+            btn3.setOnClickListener(listenerIngresarNumero);
+            btn4.setOnClickListener(listenerIngresarNumero);
+            btn5.setOnClickListener(listenerIngresarNumero);
+            btn6.setOnClickListener(listenerIngresarNumero);
+            btn7.setOnClickListener(listenerIngresarNumero);
+            btn8.setOnClickListener(listenerIngresarNumero);
+            btn9.setOnClickListener(listenerIngresarNumero);
+            btnPunto.setOnClickListener(listenerIngresarNumero);
+            btnSuma.setOnClickListener(listenerSeleccionarOperacion);
+            btnResta.setOnClickListener(listenerSeleccionarOperacion);
+            btnMultiplicación.setOnClickListener(listenerSeleccionarOperacion);
+            btnDivisión.setOnClickListener(listenerSeleccionarOperacion);
+            btnExponente.setOnClickListener(listenerSeleccionarOperacion);
+            btnIgual.setOnClickListener(listenerSeleccionarOperacion);
+            btnMPlus.setOnClickListener(listenerIngresarMemoria);
+            btnMMenos.setOnClickListener(listenerIngresarMemoria);
+            btnMR.setOnClickListener(listenerIngresarMemoria);
+            btnAC.setOnClickListener(listenerBorrarTodo);
+            btnFactorial.setOnClickListener(listenerFactorial);
+        }catch (Exception e){
 
-        btn0.setOnClickListener(listenerIngresarNumero);
-        btn1.setOnClickListener(listenerIngresarNumero);
-        btn2.setOnClickListener(listenerIngresarNumero);
-        btn3.setOnClickListener(listenerIngresarNumero);
-        btn4.setOnClickListener(listenerIngresarNumero);
-        btn5.setOnClickListener(listenerIngresarNumero);
-        btn6.setOnClickListener(listenerIngresarNumero);
-        btn7.setOnClickListener(listenerIngresarNumero);
-        btn8.setOnClickListener(listenerIngresarNumero);
-        btn9.setOnClickListener(listenerIngresarNumero);
-        btnPunto.setOnClickListener(listenerIngresarNumero);
-        btnSuma.setOnClickListener(listenerSeleccionarOperacion);
-        btnResta.setOnClickListener(listenerSeleccionarOperacion);
-        btnMultiplicación.setOnClickListener(listenerSeleccionarOperacion);
-        btnDivisión.setOnClickListener(listenerSeleccionarOperacion);
-        btnExponente.setOnClickListener(listenerSeleccionarOperacion);
-        btnIgual.setOnClickListener(listenerSeleccionarOperacion);
-        btnMPlus.setOnClickListener(listenerIngresarMemoria);
-        btnMMenos.setOnClickListener(listenerIngresarMemoria);
-        btnMR.setOnClickListener(listenerIngresarMemoria);
-        btnAC.setOnClickListener(listenerBorrarTodo);
-        btnFactorial.setOnClickListener(listenerFactorial);
+        }
+
 
         presentador = new OperacionPresentadorImpl(this);
     }
@@ -253,7 +257,6 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
     public void mostrarOperacionInvalida() {
         Toast.makeText(this, "Operación Invalida", Toast.LENGTH_SHORT).show();
     }
-
 
     /**
      * Muestra la cadena que contiene la operación.

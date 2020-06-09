@@ -59,6 +59,8 @@ public class Operacion {
             resultado.setNumero(num1.getNumero()/num2.getNumero());
         }catch (ArithmeticException e){
 
+        }catch (Exception e){
+
         }
         return resultado;
     }
@@ -74,6 +76,8 @@ public class Operacion {
         try{
             resultado.setNumero(Math.pow(num1.getNumero(),num2.getNumero()));
         }catch (ArithmeticException e){
+
+        }catch (Exception e){
 
         }
         return resultado;
