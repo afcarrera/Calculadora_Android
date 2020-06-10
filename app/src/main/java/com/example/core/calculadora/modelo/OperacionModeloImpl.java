@@ -180,9 +180,11 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
     }
 
     /**
-     * Realiza el obtenerFactorial de un numero
+     * Realiza el factorial de un numero
      *
-     * @return resultador del obtenerFactorial.
+     * @param numero Valor del número del cual se requiere el factorial
+     *
+     * @return resultado del obtenerFactorial.
      */
     @Override
     public Double obtenerFactorial(Double numero) {
@@ -190,6 +192,18 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
             return 1.0;
         else
             return numero * obtenerFactorial(numero - 1);
+    }
+
+    /**
+     * Realiza el cambio se signo de un numero
+     *
+     * @param numero Valor del número del cual se requiere cambiar el signo
+     *
+     * @return Número cambiado de signo.
+     */
+    @Override
+    public Double cambiarSigno(Double numero) {
+        return numero * (-1.0);
     }
 }
 

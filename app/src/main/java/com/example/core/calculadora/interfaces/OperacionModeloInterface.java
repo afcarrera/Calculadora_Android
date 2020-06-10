@@ -74,7 +74,18 @@ public interface OperacionModeloInterface {
     /**
      * Realiza el obtenerFactorial de un numero
      *
+     * @param numero Valor del número del cual se requiere el factorial
+     *
      * @return Resultado del obtenerFactorial.
      */
     Double obtenerFactorial(Double numero);
+
+    /**
+     * Realiza el cambio se signo de un numero
+     *
+     * @param numero Valor del número del cual se requiere cambiar el signo
+     *
+     * @return Número cambiado de signo.
+     */
+    Double cambiarSigno(Double numero);
 }

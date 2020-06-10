@@ -69,6 +69,9 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
     /** Boton punto */
     private Button btnPunto;
 
+    /** Boton para cambiar de signo */
+    private Button btnCambioSigno;
+
     /** Boton operación de suma */
     private Button btnSuma;
 
@@ -136,6 +139,7 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
             btn8 = (Button) findViewById(R.id.btnOcho);
             btn9 = (Button) findViewById(R.id.btnNueve);
             btnPunto = (Button) findViewById(R.id.btnPunto);
+            btnCambioSigno = (Button) findViewById(R.id.btnCambioSigno);
             btnSuma = (Button) findViewById(R.id.btnSuma);
             btnResta = (Button) findViewById(R.id.btnResta);
             btnMultiplicación = (Button) findViewById(R.id.btnMultiplicacion);
@@ -160,6 +164,7 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
             btn8.setOnClickListener(listenerIngresarNumero);
             btn9.setOnClickListener(listenerIngresarNumero);
             btnPunto.setOnClickListener(listenerIngresarNumero);
+            btnCambioSigno.setOnClickListener(listenerCambioSigno);
             btnSuma.setOnClickListener(listenerSeleccionarOperacion);
             btnResta.setOnClickListener(listenerSeleccionarOperacion);
             btnMultiplicación.setOnClickListener(listenerSeleccionarOperacion);
@@ -226,6 +231,14 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
         @Override
         public void onClick(View view) {
             presentador.obtenerFactorial(view,txtPantalla);
+        }
+    };
+
+    /** Escucha el botón para cambiar de signo al número mostrado por pantalla. */
+    private View.OnClickListener listenerCambioSigno = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            presentador.cambiarSigno(view,txtPantalla);
         }
     };
 

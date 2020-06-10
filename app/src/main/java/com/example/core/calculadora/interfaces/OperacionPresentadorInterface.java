@@ -90,6 +90,14 @@ public interface OperacionPresentadorInterface {
     void obtenerFactorial(View view, TextView txtPantalla);
 
     /**
+     * Realiza el cambio se signo de un numero
+     *
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
+     */
+    void cambiarSigno(View view, TextView txtPantalla);
+
+    /**
      * Borra todas las operaciones y numeros.
      *
      * @param view Vista de la aplicación
@@ -104,6 +112,6 @@ public interface OperacionPresentadorInterface {
      * @param view Vista de la aplicación
      * @param txtPantalla Número ingresado por pantalla
      */
-    public void borrarPantalla(View view, TextView txtPantalla);
+    void borrarPantalla(View view, TextView txtPantalla);
 }
 

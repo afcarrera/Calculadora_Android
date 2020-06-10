@@ -169,12 +169,7 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
             }
         if (modelo != null) {
             modelo.vaciarNumeroPantalla();
-            if(numero>=0){
-                modelo.validarIngresoCadena(""+numero);
-            }else{
-                numero=numero*(-1);
-                modelo.validarIngresoCadena("(0─"+numero+")");
-            }
+            modelo.validarIngresoCadena(""+numero);
             if(operador=="="){
                 modelo.realizarOperacion();
                 modelo.vaciarCadenaOperacion();
@@ -261,6 +256,21 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
                     vista.mostrarResultado(resultado.toString());
                 }
             }
+        }
+    }
+
+    /**
+     * Realiza el cambio se signo de un numero
+     *
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
+     */
+    @Override
+    public void cambiarSigno(View view, TextView txtPantalla){
+        Double numero=Double.parseDouble(txtPantalla.getText().toString());
+        if (modelo != null){
+            numero=modelo.cambiarSigno(numero);
+            vista.mostrarResultado(numero.toString());
         }
     }
 
