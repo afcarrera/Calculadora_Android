@@ -211,4 +211,15 @@ public class OperacionModeloImplTest {
         assertEquals(modelo.obtenerLogaritmo(1000.0), resultado);
     }
 
+    /**
+     * Prueba  del método obtenerRaizCuadrada de la clase OperacionModeloImpl.
+     *
+     * @throws Exception Excepción elevada durante el proceso de prueba
+     */
+    @Test
+    public void obtenerRaizCuadrada() throws Exception {
+        Double resultado=10.0;
+        assertEquals(modelo.obtenerRaizCuadrada(100.0), resultado);
+    }
+
 }

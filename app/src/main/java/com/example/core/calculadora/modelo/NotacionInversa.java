@@ -88,7 +88,7 @@ public class NotacionInversa {
      * @param cadenaInfijo Cadena en infijo
      * @return Retorna la notación  postfija
      */
-    public static String TransformarInfijoPosfijo(String cadenaInfijo){//<- entra la expresion infija
+    private static String TransformarInfijoPosfijo(String cadenaInfijo){//<- entra la expresion infija
         String postfij = null; //<- Inicializando variable postfijo, será usada al final
         String expr = Depurar(cadenaInfijo); //<- Depurando la expresion infija,
         // por si llega a tener espacios innecesarios o algo por el estilo

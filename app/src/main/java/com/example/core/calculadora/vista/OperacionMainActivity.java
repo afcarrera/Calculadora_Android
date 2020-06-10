@@ -96,6 +96,9 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
     /** Boton operación de logaritmo en base 10 */
     private Button btnLogaritmo;
 
+    /** Boton operación de raiz cuadrada */
+    private Button btnRaizCuadrada;
+
     /** Boton operación de igual */
     private Button btnIgual;
 
@@ -157,6 +160,7 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
             btnExponente = (Button) findViewById(R.id.btnExponente);
             btnFactorial = (Button) findViewById(R.id.btnFactorial);
             btnLogaritmo = (Button) findViewById(R.id.btnLogaritmo);
+            btnRaizCuadrada = (Button) findViewById(R.id.btnRaizCuadrada);
             btn0.setOnClickListener(listenerIngresarNumero);
             btn1.setOnClickListener(listenerIngresarNumero);
             btn2.setOnClickListener(listenerIngresarNumero);
@@ -183,6 +187,7 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
             btnAC.setOnClickListener(listenerBorrarTodo);
             btnFactorial.setOnClickListener(listenerFactorial);
             btnLogaritmo.setOnClickListener(listenerLogaritmo);
+            btnRaizCuadrada.setOnClickListener(listenerRaizCuadrada);
         }catch (Exception e){
 
         }
@@ -252,6 +257,14 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
         @Override
         public void onClick(View view) {
             presentador.obtenerLogaritmo(view,txtPantalla);
+        }
+    };
+
+    /** Escucha el botón para realizar la operación de raiz cuadrada. */
+    private View.OnClickListener listenerRaizCuadrada = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            presentador.obtenerRaizCuadrada(view,txtPantalla);
         }
     };
 

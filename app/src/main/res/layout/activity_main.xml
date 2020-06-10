@@ -83,7 +83,7 @@
                     android:layout_marginBottom="14dp"
                     android:layout_weight="0.10"
                     android:height="100dp"
-                    android:text="0"
+                    android:text="0.0"
                     android:textAlignment="textEnd"
                     android:textColor="#F5F5F5"
                     android:textSize="35dp" />

@@ -106,6 +106,14 @@ public interface OperacionPresentadorInterface {
     void obtenerLogaritmo(View view, TextView txtPantalla);
 
     /**
+     * Obtiene el obtener la raiz cuadrada de un número.
+     *
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
+     */
+    void obtenerRaizCuadrada(View view, TextView txtPantalla);
+
+    /**
      * Borra todas las operaciones y numeros.
      *
      * @param view Vista de la aplicación

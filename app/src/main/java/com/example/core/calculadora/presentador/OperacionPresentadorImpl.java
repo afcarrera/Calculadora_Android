@@ -301,6 +301,33 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
     }
 
     /**
+     * Obtiene el obtener la raiz cuadrada de un número.
+     *
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
+     */
+    @Override
+    public void obtenerRaizCuadrada(View view, TextView txtPantalla){
+        Double numero=Double.parseDouble(txtPantalla.getText().toString());
+        Double resultado;
+        try{
+            resultado=modelo.obtenerRaizCuadrada(numero);
+            if(resultado.isNaN()) {
+                vista.mostrarOperacionInvalida();
+                return;
+            }
+            modelo.vaciarNumeroPantalla();
+            vista.mostrarResultado(resultado.toString());
+        }catch(ArithmeticException e){
+            vista.mostrarOperacionInvalida();
+        }catch(RuntimeException e){
+            vista.mostrarOperacionInvalida();
+        }catch(Exception e){
+            vista.mostrarOperacionInvalida();
+        }
+    }
+
+    /**
      * Borra todas las operaciones y numeros.
      *
      * @param view Vista de la aplicación
@@ -309,7 +336,7 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
      */
     @Override
     public void borrarTodo(View view, TextView txtPantalla, TextView txtCadenaOperacion){
-        txtPantalla.setText("0");
+        txtPantalla.setText("0.0");
         txtCadenaOperacion.setText(null);
         modelo.vaciarNumeroPantalla();
         modelo.vaciarCadenaOperacion();
@@ -323,7 +350,7 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
      */
     @Override
     public void borrarPantalla(View view, TextView txtPantalla){
-        txtPantalla.setText("0");
+        txtPantalla.setText("0.0");
         modelo.vaciarNumeroPantalla();
     }
 }

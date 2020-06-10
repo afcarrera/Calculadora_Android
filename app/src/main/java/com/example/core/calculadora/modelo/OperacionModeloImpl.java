@@ -203,7 +203,9 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
      */
     @Override
     public Double cambiarSigno(Double numero) {
-        return numero * (-1.0);
+        if(numero!=0)
+            return numero * (-1.0);
+        return 0.0;
     }
 
     /**
@@ -223,5 +225,28 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
         }
         return (Math.log(numero)/Math.log(10));
     }
+
+    /**
+     * Realiza la raiz cuadrada de un numero
+     *
+     * @param numero Valor del número del cual se requiere la raiz cuadrada.
+     *
+     * @return Resultado de la raiz cuadrada.
+     */
+    @Override
+    public Double obtenerRaizCuadrada(Double numero){
+        Double resultado=1.0;
+        if (numero > 0) {
+            for(int i=0;i<100;i++){
+                resultado=(resultado+(numero/resultado))/2;
+            }
+        }else if(numero<0){
+            resultado=0.0/0.0;
+        }else{
+            resultado=0.0;
+        }
+        return resultado;
+    }
+
 }
 

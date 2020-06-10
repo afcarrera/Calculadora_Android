@@ -97,4 +97,13 @@ public interface OperacionModeloInterface {
      * @return Resultado del logaritmo.
      */
     Double obtenerLogaritmo(Double numero);
+
+    /**
+     * Realiza la raiz cuadrada de un numero
+     *
+     * @param numero Valor del número del cual se requiere la raiz cuadrada.
+     *
+     * @return Resultado de la raiz cuadrada.
+     */
+    Double obtenerRaizCuadrada(Double numero);
 }
