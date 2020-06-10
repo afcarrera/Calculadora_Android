@@ -200,4 +200,15 @@ public class OperacionModeloImplTest {
         assertEquals(Operacion.obtenerModulo(numero1,numero2).getNumero(), resultado.getNumero());
     }
 
+    /**
+     * Prueba  del método obtenerModulo de la clase OperacionModeloImpl.
+     *
+     * @throws Exception Excepción elevada durante el proceso de prueba
+     */
+    @Test
+    public void obtenerLogaritmo() throws Exception {
+        Double resultado=3.0;
+        assertEquals(modelo.obtenerLogaritmo(1000.0), resultado);
+    }
+
 }

@@ -72,11 +72,11 @@ public interface OperacionModeloInterface {
     void devolverNumeroMemoria();
 
     /**
-     * Realiza el obtenerFactorial de un numero
+     * Realiza el factorial de un numero
      *
      * @param numero Valor del número del cual se requiere el factorial
      *
-     * @return Resultado del obtenerFactorial.
+     * @return Resultado del factorial.
      */
     Double obtenerFactorial(Double numero);
 
@@ -88,4 +88,13 @@ public interface OperacionModeloInterface {
      * @return Número cambiado de signo.
      */
     Double cambiarSigno(Double numero);
+
+    /**
+     * Realiza el logaritmo de un numero
+     *
+     * @param numero Valor del número del cual se requiere el logaritmo.
+     *
+     * @return Resultado del logaritmo.
+     */
+    Double obtenerLogaritmo(Double numero);
 }

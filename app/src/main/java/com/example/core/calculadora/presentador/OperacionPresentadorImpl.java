@@ -234,7 +234,7 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
     @Override
     public void obtenerFactorial(View view, TextView txtPantalla){
         Double numero = Double.parseDouble(txtPantalla.getText().toString());
-        Double resultado=0.0;
+        Double resultado;
         if(numero.isInfinite()){
             modelo.vaciarNumeroPantalla();
             vista.mostrarOperacionInvalida();
@@ -270,7 +270,33 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
         Double numero=Double.parseDouble(txtPantalla.getText().toString());
         if (modelo != null){
             numero=modelo.cambiarSigno(numero);
+            modelo.vaciarNumeroPantalla();
             vista.mostrarResultado(numero.toString());
+        }
+    }
+
+    /**
+     * Obtiene el obtener el logaritmo de un número.
+     *
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
+     */
+    @Override
+    public void obtenerLogaritmo(View view, TextView txtPantalla){
+        Double numero=Double.parseDouble(txtPantalla.getText().toString());
+        Double resultado;
+        try{
+            resultado=modelo.obtenerLogaritmo(numero);
+            if(resultado.isNaN()) {
+                vista.mostrarOperacionInvalida();
+                return;
+            }
+            modelo.vaciarNumeroPantalla();
+            vista.mostrarResultado(resultado.toString());
+        }catch(ArithmeticException e){
+            vista.mostrarOperacionInvalida();
+        }catch(Exception e){
+            vista.mostrarOperacionInvalida();
         }
     }
 

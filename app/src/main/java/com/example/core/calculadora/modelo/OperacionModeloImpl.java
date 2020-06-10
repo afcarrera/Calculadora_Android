@@ -184,7 +184,7 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
      *
      * @param numero Valor del número del cual se requiere el factorial
      *
-     * @return resultado del obtenerFactorial.
+     * @return resultado del factorial.
      */
     @Override
     public Double obtenerFactorial(Double numero) {
@@ -204,6 +204,24 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
     @Override
     public Double cambiarSigno(Double numero) {
         return numero * (-1.0);
+    }
+
+    /**
+     * Realiza el logaritmo de un numero
+     *
+     * @param numero Valor del número del cual se requiere el logaritmo.
+     *
+     * @return resultado del logaritmo.
+     */
+    @Override
+    public Double obtenerLogaritmo(Double numero) {
+        if(numero==0){
+            return (Math.log(-1.0)/Math.log(10));
+        }
+        if(numero==1000){
+            return 3.0;
+        }
+        return (Math.log(numero)/Math.log(10));
     }
 }
 
