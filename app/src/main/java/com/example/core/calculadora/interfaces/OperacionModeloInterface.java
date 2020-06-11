@@ -9,7 +9,7 @@ import com.example.core.calculadora.modelo.Numero;
  *  OperacionModeloImpl.
  *
  * @author Alberto Carrera
- * @version 1.0, 07/06/2020
+ * @version 1.0, 09/06/2020
  * @since 1.0, 31/05/2020
  */
 
@@ -106,4 +106,18 @@ public interface OperacionModeloInterface {
      * @return Resultado de la raiz cuadrada.
      */
     Double obtenerRaizCuadrada(Double numero);
+
+    /**
+     * Realiza la función seno de un numero
+     *
+     * @param numero Valor del número del cual se requiere el seno.
+     */
+    void obtenerSeno(Double numero);
+
+    /**
+     * Realiza la función coseno de un numero
+     *
+     * @param numero Valor del número del cual se requiere el coseno.
+     */
+    void obtenerCoseno(Double numero);
 }

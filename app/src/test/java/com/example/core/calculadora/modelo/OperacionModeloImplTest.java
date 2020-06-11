@@ -18,7 +18,8 @@ import static org.mockito.Mockito.verify;
  *  Clase para realizar pruebas unitarias de la clase OperacionModeloImpl.
  *
  * @author Alberto Carrera
- * @version 1.0, 31/05/2020
+ * @version 1.0, 09/06/2020
+ * @since 1.0, 31/05/2020
  */
 
 @RunWith(MockitoJUnitRunner.class)
@@ -222,4 +223,29 @@ public class OperacionModeloImplTest {
         assertEquals(modelo.obtenerRaizCuadrada(100.0), resultado);
     }
 
+    /**
+     * Prueba  del método obtenerSeno de la clase OperacionModeloImpl.
+     *
+     * @throws Exception Excepción elevada durante el proceso de prueba
+     */
+    @Test
+    public void obtenerSeno() throws Exception {
+        Numero resultado = new Numero();
+        resultado.setNumero(0.86602540378444);
+        numero1.setNumero(60.0);
+        assertEquals(FuncionTrigonometrica.obtenerSeno(numero1).getNumero(), resultado.getNumero());
+    }
+
+    /**
+     * Prueba  del método obtenerCoseno de la clase OperacionModeloImpl.
+     *
+     * @throws Exception Excepción elevada durante el proceso de prueba
+     */
+    @Test
+    public void obtenerCoseno() throws Exception {
+        Numero resultado = new Numero();
+        resultado.setNumero(0.5);
+        numero1.setNumero(60.0);
+        assertEquals(FuncionTrigonometrica.obtenerCoseno(numero1).getNumero(), resultado.getNumero());
+    }
 }

@@ -18,7 +18,7 @@ import com.example.core.calculadora.presentador.OperacionPresentadorImpl;
  *  Clase principal de la aplicación, implementa la interface OperacionVistaInterface.
  *
  * @author Alberto Carrera
- * @version 1.0, 07/06/2020
+ * @version 1.0, 09/06/2020
  * @since 1.0, 31/05/2020
  */
 
@@ -32,6 +32,9 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
 
     /** Operador de la Operación */
     private TextView txtOperadorMemoria;
+
+    /** Memoria */
+    private TextView txtMemoria;
 
     /** Operación */
     private TextView txtOperacion;
@@ -102,6 +105,12 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
     /** Boton operación de igual */
     private Button btnIgual;
 
+    /** Boton función seno */
+    private Button btnSeno;
+
+    /** Boton función coseno */
+    private Button btnCoseno;
+
     /** Boton M+ */
     private Button btnMPlus;
 
@@ -133,6 +142,7 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
             txtPantalla = (TextView) findViewById(R.id.txtPantalla);
             txtNumeroMemoria = (TextView) findViewById(R.id.txtNumeroMemoria);
             txtOperadorMemoria = (TextView) findViewById(R.id.txtOperadorMemoria);
+            txtMemoria = (TextView) findViewById(R.id.txtMemoria);
             txtOperacion = (TextView) findViewById(R.id.txtOperacion);
             btn0 = (Button) findViewById(R.id.btnCero);
             btn1 = (Button) findViewById(R.id.btnUno);
@@ -161,6 +171,8 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
             btnFactorial = (Button) findViewById(R.id.btnFactorial);
             btnLogaritmo = (Button) findViewById(R.id.btnLogaritmo);
             btnRaizCuadrada = (Button) findViewById(R.id.btnRaizCuadrada);
+            btnSeno = (Button) findViewById(R.id.btnSeno);
+            btnCoseno = (Button) findViewById(R.id.btnCoseno);
             btn0.setOnClickListener(listenerIngresarNumero);
             btn1.setOnClickListener(listenerIngresarNumero);
             btn2.setOnClickListener(listenerIngresarNumero);
@@ -188,6 +200,8 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
             btnFactorial.setOnClickListener(listenerFactorial);
             btnLogaritmo.setOnClickListener(listenerLogaritmo);
             btnRaizCuadrada.setOnClickListener(listenerRaizCuadrada);
+            btnSeno.setOnClickListener(listenerSeleccionarFuncionTrigonometrica);
+            btnCoseno.setOnClickListener(listenerSeleccionarFuncionTrigonometrica);
         }catch (Exception e){
 
         }
@@ -268,6 +282,14 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
         }
     };
 
+    /** Escucha el botón para realizar la operación de raiz cuadrada. */
+    private View.OnClickListener listenerSeleccionarFuncionTrigonometrica = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            presentador.obtenerFuncionTrigonometrica(view,txtPantalla);
+        }
+    };
+
     /**
      * Muestra el resultado de la operación realizada.
      *
@@ -285,6 +307,7 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
      */
     @Override
     public void mostrarNumeroMemoria(String numeroMemoria) {
+        txtMemoria.setText("Memoria:    ");
         txtNumeroMemoria.setText(numeroMemoria);
     }
 

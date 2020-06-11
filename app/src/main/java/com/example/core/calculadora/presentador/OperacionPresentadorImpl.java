@@ -15,7 +15,8 @@ import com.example.core.calculadora.interfaces.OperacionVistaInterface;
  *  Clase implementada de la interface OperacionPresentadorInterface.
  *
  * @author Alberto Carrera
- * @version 1.0, 31/05/2020
+ * @version 1.0, 09/06/2020
+ * @since 1.0, 31/05/2020
  */
 
 public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
@@ -318,6 +319,39 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
             }
             modelo.vaciarNumeroPantalla();
             vista.mostrarResultado(resultado.toString());
+        }catch(ArithmeticException e){
+            vista.mostrarOperacionInvalida();
+        }catch(RuntimeException e){
+            vista.mostrarOperacionInvalida();
+        }catch(Exception e){
+            vista.mostrarOperacionInvalida();
+        }
+    }
+
+    /**
+     * Obtiene el obtener la funcion trigonometrica de un número.
+     *
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
+     */
+    @Override
+    public void obtenerFuncionTrigonometrica(View view, TextView txtPantalla){
+        Double numero =Double.parseDouble(txtPantalla.getText().toString());
+        try{
+            switch (view.getId()) {
+                case R.id.btnSeno:
+                    if (modelo != null) {
+                        modelo.vaciarNumeroPantalla();
+                        modelo.obtenerSeno(numero);
+                    }
+                    break;
+                case R.id.btnCoseno:
+                    if (modelo != null) {
+                        modelo.vaciarNumeroPantalla();
+                        modelo.obtenerCoseno(numero);
+                    }
+                    break;
+            }
         }catch(ArithmeticException e){
             vista.mostrarOperacionInvalida();
         }catch(RuntimeException e){

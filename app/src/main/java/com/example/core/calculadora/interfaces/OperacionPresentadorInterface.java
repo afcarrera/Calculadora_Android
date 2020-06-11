@@ -10,7 +10,7 @@ import android.widget.TextView;
  *  OperacionPresentadorImpl.
  *
  * @author Alberto Carrera
- * @version 1.0, 07/06/2020
+ * @version 1.0, 09/06/2020
  * @since 1.0, 31/05/2020
  */
 
@@ -112,6 +112,14 @@ public interface OperacionPresentadorInterface {
      * @param txtPantalla Número ingresado por pantalla
      */
     void obtenerRaizCuadrada(View view, TextView txtPantalla);
+
+    /**
+     * Obtiene el obtener la funcion trigonometrica de un número.
+     *
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
+     */
+    void obtenerFuncionTrigonometrica(View view, TextView txtPantalla);
 
     /**
      * Borra todas las operaciones y numeros.

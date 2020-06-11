@@ -7,7 +7,7 @@ import java.util.Stack;
  *  Clase que transforma una operación de postfijo a un resultado.
  *
  * @author Alberto Carrera
- * @version 1.0, 07/06/2020
+ * @version 1.0, 09/06/2020
  * @since 1.0, 31/05/2020
  */
 

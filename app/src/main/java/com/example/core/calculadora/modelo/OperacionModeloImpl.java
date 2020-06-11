@@ -8,7 +8,7 @@ import com.example.core.calculadora.interfaces.OperacionPresentadorInterface;
  *  Clase implementada de la interface OperacionModeloInterface.
  *
  * @author Alberto Carrera
- * @version 1.0, 07/06/2020
+ * @version 1.0, 09/06/2020
  * @since 1.0, 31/05/2020
  */
 
@@ -135,7 +135,6 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
         }else{
             presentador.mostrarResultado(resultado.getNumero().toString());
         }
-
     }
 
     /** Borra el numero que se ha ingresado por pantalla */
@@ -188,10 +187,7 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
      */
     @Override
     public Double obtenerFactorial(Double numero) {
-        if (numero == 0)
-            return 1.0;
-        else
-            return numero * obtenerFactorial(numero - 1);
+        return Operacion.obtenerFactorial(numero);
     }
 
     /**
@@ -246,6 +242,38 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
             resultado=0.0;
         }
         return resultado;
+    }
+
+    /**
+     * Realiza la función seno de un numero
+     *
+     * @param numero Valor del número del cual se requiere el seno.
+     */
+    @Override
+    public void obtenerSeno(Double numero){
+        Numero resultado=
+                FuncionTrigonometrica.obtenerSeno(new Numero(numero));
+        if(resultado.getNumero().isNaN()){
+            presentador.mostrarOperacionInvalida();
+        }else{
+            presentador.mostrarResultado(resultado.getNumero().toString());
+        }
+    }
+
+    /**
+     * Realiza la función coseno de un numero
+     *
+     * @param numero Valor del número del cual se requiere el coseno.
+     */
+    @Override
+    public void obtenerCoseno(Double numero){
+        Numero resultado=
+                FuncionTrigonometrica.obtenerCoseno(new Numero(numero));
+        if(resultado.getNumero().isNaN()){
+            presentador.mostrarOperacionInvalida();
+        }else{
+            presentador.mostrarResultado(resultado.getNumero().toString());
+        }
     }
 
 }
