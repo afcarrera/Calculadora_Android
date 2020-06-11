@@ -137,5 +137,13 @@ public interface OperacionPresentadorInterface {
      * @param txtPantalla Número ingresado por pantalla
      */
     void borrarPantalla(View view, TextView txtPantalla);
+
+    /**
+     * Borra el ultimo caracter de lo que esta en pantalla
+     *
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
+     */
+    void borrarCaracterPantalla(View view, TextView txtPantalla);
 }
 

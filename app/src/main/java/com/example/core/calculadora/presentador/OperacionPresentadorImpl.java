@@ -142,7 +142,13 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
     @Override
     public void realizarOperacion(View view,TextView txtPantalla){
         String operador;
-        Double numero =Double.parseDouble(txtPantalla.getText().toString());
+        Double numero;
+        try{
+            numero= Double.parseDouble(txtPantalla.getText().toString());
+        }catch (NumberFormatException e){
+            vista.mostrarOperacionInvalida();
+            return;
+        }
             switch (view.getId()) {
                 case R.id.btnSuma:
                     operador = "+";
@@ -195,10 +201,13 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
             switch (view.getId()) {
                 case R.id.btnMR:
                     if(modelo.validarNumeroMemoria()!=""){
+                        modelo.vaciarNumeroPantalla();
                         modelo.devolverNumeroMemoria();
                     }
                     return;
             }
+            vista.mostrarOperacionInvalida();
+            return;
         }
         if(modelo.validarNumeroMemoria()!=""){
             if(txtPantalla.getText().toString()!="") {
@@ -210,6 +219,7 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
                         modelo.restarMemoria(numero);
                         break;
                     case R.id.btnMR:
+                        modelo.vaciarNumeroPantalla();
                         modelo.devolverNumeroMemoria();
                         break;
                 }
@@ -218,6 +228,7 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
             switch (view.getId()) {
                 case R.id.btnMR:
                     if(modelo.validarNumeroMemoria()!=""){
+                        modelo.vaciarNumeroPantalla();
                         modelo.devolverNumeroMemoria();
                     }
                     return;
@@ -234,7 +245,13 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
      */
     @Override
     public void obtenerFactorial(View view, TextView txtPantalla){
-        Double numero = Double.parseDouble(txtPantalla.getText().toString());
+        Double numero = 0.0;
+        try{
+            numero= Double.parseDouble(txtPantalla.getText().toString());
+        }catch (NumberFormatException e){
+            vista.mostrarOperacionInvalida();
+            return;
+        }
         Double resultado;
         if(numero.isInfinite()){
             modelo.vaciarNumeroPantalla();
@@ -268,7 +285,13 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
      */
     @Override
     public void cambiarSigno(View view, TextView txtPantalla){
-        Double numero=Double.parseDouble(txtPantalla.getText().toString());
+        Double numero = 0.0;
+        try{
+            numero= Double.parseDouble(txtPantalla.getText().toString());
+        }catch (NumberFormatException e){
+            vista.mostrarOperacionInvalida();
+            return;
+        }
         if (modelo != null){
             numero=modelo.cambiarSigno(numero);
             modelo.vaciarNumeroPantalla();
@@ -284,7 +307,13 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
      */
     @Override
     public void obtenerLogaritmo(View view, TextView txtPantalla){
-        Double numero=Double.parseDouble(txtPantalla.getText().toString());
+        Double numero = 0.0;
+        try{
+            numero= Double.parseDouble(txtPantalla.getText().toString());
+        }catch (NumberFormatException e){
+            vista.mostrarOperacionInvalida();
+            return;
+        }
         Double resultado;
         try{
             resultado=modelo.obtenerLogaritmo(numero);
@@ -309,7 +338,13 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
      */
     @Override
     public void obtenerRaizCuadrada(View view, TextView txtPantalla){
-        Double numero=Double.parseDouble(txtPantalla.getText().toString());
+        Double numero = 0.0;
+        try{
+            numero= Double.parseDouble(txtPantalla.getText().toString());
+        }catch (NumberFormatException e){
+            vista.mostrarOperacionInvalida();
+            return;
+        }
         Double resultado;
         try{
             resultado=modelo.obtenerRaizCuadrada(numero);
@@ -336,7 +371,13 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
      */
     @Override
     public void obtenerFuncionTrigonometrica(View view, TextView txtPantalla){
-        Double numero =Double.parseDouble(txtPantalla.getText().toString());
+        Double numero;
+        try{
+            numero= Double.parseDouble(txtPantalla.getText().toString());
+        }catch (NumberFormatException e){
+            vista.mostrarOperacionInvalida();
+            return;
+        }
         try{
             switch (view.getId()) {
                 case R.id.btnSeno:
@@ -386,5 +427,42 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
     public void borrarPantalla(View view, TextView txtPantalla){
         txtPantalla.setText("0.0");
         modelo.vaciarNumeroPantalla();
+    }
+
+
+    /**
+     * Borra el ultimo caracter de lo que esta en pantalla
+     *
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
+     */
+    @Override
+    public void borrarCaracterPantalla(View view, TextView txtPantalla){
+        String pantalla=txtPantalla.getText().toString();
+        Double numero;
+        try{
+            numero= Double.parseDouble(pantalla);
+        }catch (NumberFormatException e){
+            txtPantalla.setText("0.0");
+            modelo.vaciarNumeroPantalla();
+            return;
+        }
+        if(numero.isInfinite()||numero.isNaN()){
+            txtPantalla.setText("0.0");
+            modelo.vaciarNumeroPantalla();
+        }else{
+            try {
+                pantalla = pantalla.substring(0, pantalla.length() - 1);
+                modelo.vaciarNumeroPantalla();
+                txtPantalla.setText("");
+                if (modelo != null) {
+                    modelo.validarIngresoNumero(pantalla);
+                }
+            }catch (StringIndexOutOfBoundsException e){
+                txtPantalla.setText("0.0");
+                modelo.vaciarNumeroPantalla();
+            }
+        }
+
     }
 }

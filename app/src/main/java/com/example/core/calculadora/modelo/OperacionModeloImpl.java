@@ -175,6 +175,7 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
     public void devolverNumeroMemoria(){
         if(objetosPantalla.getNumeroMemoria()!=""){
             presentador.mostrarNumeroMemoriaPantalla(objetosPantalla.getNumeroMemoria());
+            validarIngresoNumero(objetosPantalla.getNumeroMemoria());
         }
     }
 

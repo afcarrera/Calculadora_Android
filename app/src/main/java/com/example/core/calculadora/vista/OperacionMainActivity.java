@@ -120,6 +120,9 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
     /** Boton MR */
     private Button btnMR;
 
+    /** Boton DEL */
+    private Button btnDEL;
+
     /** Boton C */
     private Button btnC;
 
@@ -165,6 +168,7 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
             btnMPlus = (Button) findViewById(R.id.btnMPlus);
             btnMMenos = (Button) findViewById(R.id.btnMMenos);
             btnMR = (Button) findViewById(R.id.btnMR);
+            btnDEL = (Button) findViewById(R.id.btnDEL);
             btnC = (Button) findViewById(R.id.btnC);
             btnAC = (Button) findViewById(R.id.btnAC);
             btnExponente = (Button) findViewById(R.id.btnExponente);
@@ -195,6 +199,7 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
             btnMPlus.setOnClickListener(listenerIngresarMemoria);
             btnMMenos.setOnClickListener(listenerIngresarMemoria);
             btnMR.setOnClickListener(listenerIngresarMemoria);
+            btnDEL.setOnClickListener(ListenerBorrarCaracter);
             btnC.setOnClickListener(listenerBorrarPantalla);
             btnAC.setOnClickListener(listenerBorrarTodo);
             btnFactorial.setOnClickListener(listenerFactorial);
@@ -239,6 +244,14 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
         @Override
         public void onClick(View view) {
             presentador.borrarTodo(view,txtPantalla,txtOperacion);
+        }
+    };
+
+    /** Escucha el botón para borrar el último caracter de lo que hay en pantalla. */
+    private View.OnClickListener ListenerBorrarCaracter = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            presentador.borrarCaracterPantalla(view,txtPantalla);
         }
     };
 
