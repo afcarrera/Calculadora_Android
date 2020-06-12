@@ -69,6 +69,24 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
     /** Boton número 0 */
     private Button btn0;
 
+    /** Boton número A */
+    private Button btnA;
+
+    /** Boton número B */
+    private Button btnB;
+
+    /** Boton número C */
+    private Button btnCe;
+
+    /** Boton número D */
+    private Button btnD;
+
+    /** Boton número E */
+    private Button btnE;
+
+    /** Boton número F */
+    private Button btnF;
+
     /** Boton punto */
     private Button btnPunto;
 
@@ -129,6 +147,24 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
     /** Boton AC */
     private Button btnAC;
 
+    /** Boton Decimal a Binario */
+    private Button btnDecimalBinario;
+
+    /** Boton Decimal a Octal */
+    private Button btnDecimalOctal;
+
+    /** Boton Decimal a Hexadecimal */
+    private Button btnDecimalHexadecimal;
+
+    /** Boton Binario a Decimal */
+    private Button btnBinarioDecimal;
+
+    /** Boton Octal a Decimal */
+    private Button btnOctalDecimal;
+
+    /** Boton Hexadecimal a Decimal */
+    private Button btnHexadecimalDecimal;
+
     /** Presentador de la aplicación */
     private OperacionPresentadorInterface presentador;
 
@@ -157,6 +193,12 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
             btn7 = (Button) findViewById(R.id.btnSiete);
             btn8 = (Button) findViewById(R.id.btnOcho);
             btn9 = (Button) findViewById(R.id.btnNueve);
+            btnA = (Button) findViewById(R.id.btnA);
+            btnB = (Button) findViewById(R.id.btnB);
+            btnCe = (Button) findViewById(R.id.btnCe);
+            btnD = (Button) findViewById(R.id.btnD);
+            btnE = (Button) findViewById(R.id.btnE);
+            btnF = (Button) findViewById(R.id.btnF);
             btnPunto = (Button) findViewById(R.id.btnPunto);
             btnCambioSigno = (Button) findViewById(R.id.btnCambioSigno);
             btnSuma = (Button) findViewById(R.id.btnSuma);
@@ -177,6 +219,12 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
             btnRaizCuadrada = (Button) findViewById(R.id.btnRaizCuadrada);
             btnSeno = (Button) findViewById(R.id.btnSeno);
             btnCoseno = (Button) findViewById(R.id.btnCoseno);
+            btnDecimalBinario= (Button) findViewById(R.id.btnDecimalBinario);
+            btnDecimalOctal= (Button) findViewById(R.id.btnDecimalOctal);
+            btnDecimalHexadecimal= (Button) findViewById(R.id.btnDecimalHexadecimal);
+            btnBinarioDecimal= (Button) findViewById(R.id.btnBinarioDecimal);
+            btnOctalDecimal= (Button) findViewById(R.id.btnOctalDecimal);
+            btnHexadecimalDecimal= (Button) findViewById(R.id.btnHexadecimalDecimal);
             btn0.setOnClickListener(listenerIngresarNumero);
             btn1.setOnClickListener(listenerIngresarNumero);
             btn2.setOnClickListener(listenerIngresarNumero);
@@ -187,6 +235,12 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
             btn7.setOnClickListener(listenerIngresarNumero);
             btn8.setOnClickListener(listenerIngresarNumero);
             btn9.setOnClickListener(listenerIngresarNumero);
+            btnA.setOnClickListener(listenerIngresarNumero);
+            btnB.setOnClickListener(listenerIngresarNumero);
+            btnCe.setOnClickListener(listenerIngresarNumero);
+            btnD.setOnClickListener(listenerIngresarNumero);
+            btnE.setOnClickListener(listenerIngresarNumero);
+            btnF.setOnClickListener(listenerIngresarNumero);
             btnPunto.setOnClickListener(listenerIngresarNumero);
             btnCambioSigno.setOnClickListener(listenerCambioSigno);
             btnSuma.setOnClickListener(listenerSeleccionarOperacion);
@@ -207,11 +261,15 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
             btnRaizCuadrada.setOnClickListener(listenerRaizCuadrada);
             btnSeno.setOnClickListener(listenerSeleccionarFuncionTrigonometrica);
             btnCoseno.setOnClickListener(listenerSeleccionarFuncionTrigonometrica);
+            btnDecimalBinario.setOnClickListener(listenerConvertirNumero);
+            btnDecimalOctal.setOnClickListener(listenerConvertirNumero);
+            btnDecimalHexadecimal.setOnClickListener(listenerConvertirNumero);
+            btnBinarioDecimal.setOnClickListener(listenerConvertirNumero);
+            btnOctalDecimal.setOnClickListener(listenerConvertirNumero);
+            btnHexadecimalDecimal.setOnClickListener(listenerConvertirNumero);
         }catch (Exception e){
 
         }
-
-
         presentador = new OperacionPresentadorImpl(this);
     }
 
@@ -296,10 +354,19 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
     };
 
     /** Escucha el botón para realizar la operación de raiz cuadrada. */
-    private View.OnClickListener listenerSeleccionarFuncionTrigonometrica = new View.OnClickListener() {
+    private View.OnClickListener listenerSeleccionarFuncionTrigonometrica
+            = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             presentador.obtenerFuncionTrigonometrica(view,txtPantalla);
+        }
+    };
+
+    /** Escucha el botón para realizar la conversion de un número */
+    private View.OnClickListener listenerConvertirNumero = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            presentador.convertirNumero(view,txtPantalla);
         }
     };
 

@@ -248,4 +248,70 @@ public class OperacionModeloImplTest {
         numero1.setNumero(60.0);
         assertEquals(FuncionTrigonometrica.obtenerCoseno(numero1).getNumero(), resultado.getNumero());
     }
+
+    /**
+     * Prueba del método para realizar la conversion de binario a decimal.
+     *
+     * @throws Exception Excepción elevada durante el proceso de prueba
+     */
+    @Test
+    public void convertirBinarioDecimal() throws Exception {
+        modelo.convertirBinarioDecimal("1000");
+        verify(presentador).mostrarResultado("8");
+    }
+
+    /**
+     * Prueba del método para realizar la conversion de octal a decimal.
+     *
+     * @throws Exception Excepción elevada durante el proceso de prueba
+     */
+    @Test
+    public void convertirOctalDecimal() throws Exception {
+        modelo.convertirOctalDecimal("10");
+        verify(presentador).mostrarResultado("8");
+    }
+
+    /**
+     * Prueba del método para realizar la conversion de hexadecimal a decimal.
+     *
+     * @throws Exception Excepción elevada durante el proceso de prueba
+     */
+    @Test
+    public void convertirHexadecimalDecimal() throws Exception {
+        modelo.convertirHexadecimalDecimal("F");
+        verify(presentador).mostrarResultado("15");
+    }
+
+    /**
+     * Prueba del método para realizar la conversion de binario a decimal.
+     *
+     * @throws Exception Excepción elevada durante el proceso de prueba
+     */
+    @Test
+    public void convertirDecimalBinario() throws Exception {
+        modelo.convertirDecimalBinario("8");
+        verify(presentador).mostrarResultado("1000");
+    }
+
+    /**
+     * Prueba del método para realizar la conversion de octal a decimal.
+     *
+     * @throws Exception Excepción elevada durante el proceso de prueba
+     */
+    @Test
+    public void convertirDecimalOctal() throws Exception {
+        modelo.convertirDecimalOctal("8");
+        verify(presentador).mostrarResultado("10");
+    }
+
+    /**
+     * Prueba del método para realizar la conversion de hexadecimal a decimal.
+     *
+     * @throws Exception Excepción elevada durante el proceso de prueba
+     */
+    @Test
+    public void convertirDecimalHexadecimal() throws Exception {
+        modelo.convertirDecimalHexadecimal("16");
+        verify(presentador).mostrarResultado("10");
+    }
 }

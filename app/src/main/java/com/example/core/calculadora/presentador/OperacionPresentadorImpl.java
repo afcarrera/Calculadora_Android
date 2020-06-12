@@ -125,6 +125,12 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
             case R.id.btnOcho: numero = "8"; break;
             case R.id.btnNueve: numero = "9"; break;
             case R.id.btnCero: numero = "0"; break;
+            case R.id.btnA: numero = "A"; break;
+            case R.id.btnB: numero = "B"; break;
+            case R.id.btnCe: numero = "C"; break;
+            case R.id.btnD: numero = "D"; break;
+            case R.id.btnE: numero = "E"; break;
+            case R.id.btnF: numero = "F"; break;
             case R.id.btnPunto: numero = "."; break;
             default: numero = "";
         }
@@ -185,7 +191,6 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
             }
         }
     }
-
 
     /**
      * Ingresa un número a memoria.
@@ -403,6 +408,37 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
     }
 
     /**
+     * Convierte un numero
+     *
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
+     */
+    @Override
+    public void convertirNumero(View view, TextView txtPantalla){
+        String numero =txtPantalla.getText().toString();
+        switch (view.getId()) {
+            case R.id.btnDecimalBinario:
+                modelo.convertirDecimalBinario(numero);
+                break;
+            case R.id.btnBinarioDecimal:
+                modelo.convertirBinarioDecimal(numero);
+                break;
+            case R.id.btnOctalDecimal:
+                modelo.convertirOctalDecimal(numero);
+                break;
+            case R.id.btnDecimalOctal:
+                modelo.convertirDecimalOctal(numero);
+                break;
+            case R.id.btnDecimalHexadecimal:
+                modelo.convertirDecimalHexadecimal(numero);
+                break;
+            case R.id.btnHexadecimalDecimal:
+                modelo.convertirHexadecimalDecimal(numero);
+                break;
+        }
+    }
+
+    /**
      * Borra todas las operaciones y numeros.
      *
      * @param view Vista de la aplicación
@@ -439,30 +475,29 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
     @Override
     public void borrarCaracterPantalla(View view, TextView txtPantalla){
         String pantalla=txtPantalla.getText().toString();
-        Double numero;
+        Double numero=0.0;
         try{
             numero= Double.parseDouble(pantalla);
-        }catch (NumberFormatException e){
-            txtPantalla.setText("0.0");
-            modelo.vaciarNumeroPantalla();
-            return;
-        }
-        if(numero.isInfinite()||numero.isNaN()){
-            txtPantalla.setText("0.0");
-            modelo.vaciarNumeroPantalla();
-        }else{
-            try {
-                pantalla = pantalla.substring(0, pantalla.length() - 1);
-                modelo.vaciarNumeroPantalla();
-                txtPantalla.setText("");
-                if (modelo != null) {
-                    modelo.validarIngresoNumero(pantalla);
-                }
-            }catch (StringIndexOutOfBoundsException e){
+            if(numero.isInfinite()||numero.isNaN()){
                 txtPantalla.setText("0.0");
                 modelo.vaciarNumeroPantalla();
+                return;
             }
+        }catch (NumberFormatException e){
+
         }
+        try {
+            pantalla = pantalla.substring(0, pantalla.length() - 1);
+            modelo.vaciarNumeroPantalla();
+            txtPantalla.setText("");
+            if (modelo != null) {
+                modelo.validarIngresoNumero(pantalla);
+            }
+        }catch (StringIndexOutOfBoundsException e){
+            txtPantalla.setText("0.0");
+            modelo.vaciarNumeroPantalla();
+        }
+
 
     }
 }

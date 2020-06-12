@@ -121,6 +121,15 @@ public interface OperacionPresentadorInterface {
      */
     void obtenerFuncionTrigonometrica(View view, TextView txtPantalla);
 
+
+    /**
+     * Convierte un numero
+     *
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
+     */
+    void convertirNumero(View view, TextView txtPantalla);
+
     /**
      * Borra todas las operaciones y numeros.
      *
@@ -145,5 +154,6 @@ public interface OperacionPresentadorInterface {
      * @param txtPantalla Número ingresado por pantalla
      */
     void borrarCaracterPantalla(View view, TextView txtPantalla);
+
 }
 

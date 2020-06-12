@@ -120,4 +120,48 @@ public interface OperacionModeloInterface {
      * @param numero Valor del número del cual se requiere el coseno.
      */
     void obtenerCoseno(Double numero);
+
+    /**
+     * Realiza la conversion de binario a decimal
+     *
+     * @param numero Valor del número del cual se requiere la conversion.
+     */
+    void convertirBinarioDecimal(String numero);
+
+    /**
+     * Realiza la conversion de octal a decimal
+     *
+     * @param numero Valor del número del cual se requiere la conversion.
+     */
+    void convertirOctalDecimal(String numero);
+
+    /**
+     * Realiza la conversion de hexadecimal a decimal
+     *
+     * @param numero Valor del número del cual se requiere la conversion.
+     */
+    void convertirHexadecimalDecimal(String numero);
+
+    /**
+     * Realiza la conversion de decimal a binario
+     *
+     * @param numero Valor del número del cual se requiere la conversion.
+     */
+    void convertirDecimalBinario(String numero);
+
+    /**
+     * Realiza la conversion de decimal a octal
+     *
+     * @param numero Valor del número del cual se requiere la conversion.
+     */
+    void convertirDecimalOctal(String numero);
+
+    /**
+     * Realiza la conversion de decimal a hexadecimal
+     *
+     * @param numero Valor del número del cual se requiere la conversion.
+     */
+    void convertirDecimalHexadecimal(String numero);
+
+
 }

@@ -175,7 +175,6 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
     public void devolverNumeroMemoria(){
         if(objetosPantalla.getNumeroMemoria()!=""){
             presentador.mostrarNumeroMemoriaPantalla(objetosPantalla.getNumeroMemoria());
-            validarIngresoNumero(objetosPantalla.getNumeroMemoria());
         }
     }
 
@@ -232,6 +231,7 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
      */
     @Override
     public Double obtenerRaizCuadrada(Double numero){
+
         Double resultado=1.0;
         if (numero > 0) {
             for(int i=0;i<100;i++){
@@ -274,6 +274,102 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
             presentador.mostrarOperacionInvalida();
         }else{
             presentador.mostrarResultado(resultado.getNumero().toString());
+        }
+    }
+
+    /**
+     * Realiza la conversion de binario a decimal
+     *
+     * @param numero Valor del número del cual se requiere la conversion.
+     */
+    @Override
+    public void convertirBinarioDecimal(String numero){
+        try{
+            Integer resultado= Integer.parseInt(numero,2);
+            vaciarNumeroPantalla();
+            presentador.mostrarResultado(resultado.toString());
+        }catch (NumberFormatException e){
+            presentador.mostrarOperacionInvalida();
+        }
+    }
+
+    /**
+     * Realiza la conversion de octal a decimal
+     *
+     * @param numero Valor del número del cual se requiere la conversion.
+     */
+    @Override
+    public void convertirOctalDecimal(String numero){
+        try{
+            Integer resultado= Integer.parseInt(numero,8);
+            vaciarNumeroPantalla();
+            presentador.mostrarResultado(resultado.toString());
+        }catch (NumberFormatException e){
+            presentador.mostrarOperacionInvalida();
+        }
+    }
+
+    /**
+     * Realiza la conversion de hexadecimal a decimal
+     *
+     * @param numero Valor del número del cual se requiere la conversion.
+     */
+    @Override
+    public void convertirHexadecimalDecimal(String numero){
+        try{
+            Integer resultado= Integer.parseInt(numero,16);
+            vaciarNumeroPantalla();
+            presentador.mostrarResultado(resultado.toString());
+        }catch (NumberFormatException e){
+            presentador.mostrarOperacionInvalida();
+        }
+    }
+
+    /**
+     * Realiza la conversion de decimal a binario
+     *
+     * @param numero Valor del número del cual se requiere la conversion.
+     */
+    @Override
+    public void convertirDecimalBinario(String numero){
+        try{
+            int num=Integer.parseInt(numero);
+            vaciarNumeroPantalla();
+            presentador.mostrarResultado(Integer.toBinaryString(num));
+        }catch (NumberFormatException e){
+            presentador.mostrarOperacionInvalida();
+        }
+    }
+
+    /**
+     * Realiza la conversion de decimal a octal
+     *
+     * @param numero Valor del número del cual se requiere la conversion.
+     */
+    @Override
+    public void convertirDecimalOctal(String numero){
+        try{
+            int num=Integer.parseInt(numero);
+            vaciarNumeroPantalla();
+            presentador.mostrarResultado(Integer.toOctalString(num));
+        }catch (NumberFormatException e){
+            presentador.mostrarOperacionInvalida();
+        }
+    }
+
+    /**
+     * Realiza la conversion de decimal a hexadecimal
+     *
+     * @param numero Valor del número del cual se requiere la conversion.
+     */
+    @Override
+    public void convertirDecimalHexadecimal(String numero){
+        try{
+            int num=Integer.parseInt(numero);
+            vaciarNumeroPantalla();
+            presentador.mostrarResultado(Integer.toHexString(num).toUpperCase());
+        }catch (NumberFormatException e){
+            presentador.mostrarOperacionInvalida();
         }
     }
 
