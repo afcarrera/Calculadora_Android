@@ -243,7 +243,7 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
     }
 
     /**
-     * Obtiene el obtenerFactorial de un número.
+     * Obtiene el factorial de un número.
      *
      * @param view Vista de la aplicación
      * @param txtPantalla Número ingresado por pantalla
@@ -305,7 +305,7 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
     }
 
     /**
-     * Obtiene el obtener el logaritmo de un número.
+     * Obtiene el logaritmo de un número.
      *
      * @param view Vista de la aplicación
      * @param txtPantalla Número ingresado por pantalla
@@ -336,7 +336,7 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
     }
 
     /**
-     * Obtiene el obtener la raiz cuadrada de un número.
+     * Obtiene la raiz cuadrada de un número.
      *
      * @param view Vista de la aplicación
      * @param txtPantalla Número ingresado por pantalla
@@ -369,7 +369,7 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
     }
 
     /**
-     * Obtiene el obtener la funcion trigonometrica de un número.
+     * Obtiene la funcion trigonometrica de un número.
      *
      * @param view Vista de la aplicación
      * @param txtPantalla Número ingresado por pantalla

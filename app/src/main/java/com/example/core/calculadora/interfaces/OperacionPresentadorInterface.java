@@ -82,7 +82,7 @@ public interface OperacionPresentadorInterface {
     void ingresarNumeroMemoria(View view, TextView txtPantalla);
 
     /**
-     * Obtiene el obtener el factorial de un número.
+     * Obtiene el factorial de un número.
      *
      * @param view Vista de la aplicación
      * @param txtPantalla Número ingresado por pantalla
@@ -98,7 +98,7 @@ public interface OperacionPresentadorInterface {
     void cambiarSigno(View view, TextView txtPantalla);
 
     /**
-     * Obtiene el obtener el logaritmo de un número.
+     * Obtiene el logaritmo de un número.
      *
      * @param view Vista de la aplicación
      * @param txtPantalla Número ingresado por pantalla
@@ -106,7 +106,7 @@ public interface OperacionPresentadorInterface {
     void obtenerLogaritmo(View view, TextView txtPantalla);
 
     /**
-     * Obtiene el obtener la raiz cuadrada de un número.
+     * Obtiene la raiz cuadrada de un número.
      *
      * @param view Vista de la aplicación
      * @param txtPantalla Número ingresado por pantalla
@@ -114,7 +114,7 @@ public interface OperacionPresentadorInterface {
     void obtenerRaizCuadrada(View view, TextView txtPantalla);
 
     /**
-     * Obtiene el obtener la funcion trigonometrica de un número.
+     * Obtiene la funcion trigonometrica de un número.
      *
      * @param view Vista de la aplicación
      * @param txtPantalla Número ingresado por pantalla
