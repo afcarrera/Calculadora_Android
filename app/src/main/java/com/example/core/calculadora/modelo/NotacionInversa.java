@@ -169,7 +169,8 @@ public class NotacionInversa {
         for (int i = 0; i < cadenaInfijo.length(); i++) {//<- Deja espacios entre operadores
             if (simbols.contains("" + cadenaInfijo.charAt(i))) {
                 str += " " + cadenaInfijo.charAt(i) + " ";
-            }else str += cadenaInfijo.charAt(i);
+            }else
+                str += cadenaInfijo.charAt(i);
         }
         return str.replaceAll("\\s+", " ").trim();
     }
@@ -186,7 +187,9 @@ public class NotacionInversa {
         if (cadenaOperadores.equals("^")){
             prf = 5;
         }
-        if (cadenaOperadores.equals("x") || cadenaOperadores.equals("/")|| cadenaOperadores.equals("%")){
+        if (cadenaOperadores.equals("x")
+                || cadenaOperadores.equals("/")
+                || cadenaOperadores.equals("%")){
             prf = 4;
         }
         if (cadenaOperadores.equals("+") || cadenaOperadores.equals("─")){
