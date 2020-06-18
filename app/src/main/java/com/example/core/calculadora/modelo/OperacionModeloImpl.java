@@ -213,13 +213,20 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
      */
     @Override
     public Double obtenerLogaritmo(Double numero) {
-        if(numero==0){
-            return (Math.log(-1.0)/Math.log(10));
+        if(numero<=0.0){
+          return 0.0/0.0;
+        }else {
+            Double val = 0.0;
+            Double i, accurate = 10.0, reps = 0.0, b = 10.0;
+            while (numero != 1 && accurate >= 0) {
+                for (i = 0.0; numero >= b; i++) numero /= b;
+                numero = Operacion.potenciar(new Numero(numero), new Numero(10.0)).getNumero();
+                val = 10 * (val + i);
+                accurate--;
+                reps++;
+            }
+            return val / Operacion.potenciar(new Numero(10.0), new Numero(reps)).getNumero();
         }
-        if(numero==1000){
-            return 3.0;
-        }
-        return (Math.log(numero)/Math.log(10));
     }
 
     /**
@@ -231,7 +238,6 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
      */
     @Override
     public Double obtenerRaizCuadrada(Double numero){
-
         Double resultado=1.0;
         if (numero > 0) {
             for(int i=0;i<100;i++){

@@ -122,6 +122,20 @@ public class OperacionModeloImplTest {
     }
 
     /**
+     * Prueba del método potenciar para cero de la clase OperacionModeloImpl.
+     *
+     * @throws Exception Excepción elevada durante el proceso de prueba
+     */
+    @Test
+    public void potenciar() throws Exception {
+        Numero resultado = new Numero();
+        resultado.setNumero(0.125);
+        numero1.setNumero(2.0);
+        numero2.setNumero(-3.0);
+        assertEquals(Operacion.potenciar(numero1,numero2).getNumero(), resultado.getNumero());
+    }
+
+    /**
      * Prueba del método para validar el ingreso de un Numero.
      *
      * @throws Exception Excepción elevada durante el proceso de prueba

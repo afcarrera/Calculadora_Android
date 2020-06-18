@@ -77,9 +77,20 @@ public class Operacion {
      * @return Retorna el resultado final de la operación
      */
     public static Numero potenciar(Numero num1, Numero num2) {
-        Numero resultado=new Numero();
+        Numero resultado=new Numero(1.0);
         try{
-            resultado.setNumero(Math.pow(num1.getNumero(),num2.getNumero()));
+            if(num2.getNumero()<0.0){
+                num2.setNumero(num2.getNumero()*(-1.0));
+                for (double i = 1.0; i<=num2.getNumero(); i+=1) {
+                    resultado.setNumero(num1.getNumero()*resultado.getNumero());
+                }
+                resultado.setNumero(1.0/resultado.getNumero());
+            }else{
+                for (double i = 1.0; i<=num2.getNumero(); i+=1) {
+                    resultado.setNumero(num1.getNumero()*resultado.getNumero());
+                }
+            }
+
         }catch (ArithmeticException e){
 
         }catch (Exception e){

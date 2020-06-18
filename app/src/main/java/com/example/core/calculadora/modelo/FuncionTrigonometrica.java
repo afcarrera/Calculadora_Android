@@ -21,6 +21,7 @@ public class FuncionTrigonometrica {
      */
     public static Numero obtenerSeno(Numero valor) {
         Double acum=0.0,signo=1.0,r=14.0;
+        Numero redondeo = new Numero(r);
         valor.setNumero(valor.getNumero()*Math.PI/180);
         for(int i=1; i<100; i+=2)
         {
@@ -30,8 +31,8 @@ public class FuncionTrigonometrica {
             signo *= -1;
         }
         valor.setNumero(acum);
-        r=Math.pow(10,r);
-        valor.setNumero(Math.rint(valor.getNumero()*r)/r);
+        redondeo.setNumero(Operacion.potenciar(new Numero(10.0),redondeo).getNumero());
+        valor.setNumero(Math.rint(valor.getNumero()*redondeo.getNumero())/redondeo.getNumero());
         return valor;
     }
 
@@ -43,6 +44,7 @@ public class FuncionTrigonometrica {
      */
     public static Numero obtenerCoseno(Numero valor) {
         Double acum=0.0,signo=1.0,r=14.0;
+        Numero redondeo = new Numero(r);
         valor.setNumero(valor.getNumero()*Math.PI/180);
         for(int i=0; i<100; i+=2)
         {
@@ -52,8 +54,8 @@ public class FuncionTrigonometrica {
             signo *= -1;
         }
         valor.setNumero(acum);
-        r=Math.pow(10,r);
-        valor.setNumero(Math.rint(valor.getNumero()*r)/r);
+        redondeo.setNumero(Operacion.potenciar(new Numero(10.0),redondeo).getNumero());
+        valor.setNumero(Math.rint(valor.getNumero()*redondeo.getNumero())/redondeo.getNumero());
         return valor;
     }
 }
