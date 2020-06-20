@@ -245,7 +245,7 @@ public class OperacionModeloImplTest {
     @Test
     public void obtenerSeno() throws Exception {
         Numero resultado = new Numero();
-        resultado.setNumero(0.86602540378444);
+        resultado.setNumero(0.866025403784);
         numero1.setNumero(60.0);
         assertEquals(FuncionTrigonometrica.obtenerSeno(numero1).getNumero(), resultado.getNumero());
     }

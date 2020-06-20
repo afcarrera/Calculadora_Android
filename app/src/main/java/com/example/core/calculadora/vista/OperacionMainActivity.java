@@ -1,5 +1,6 @@
 package com.example.core.calculadora.vista;
 
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -165,6 +166,12 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
     /** Boton Hexadecimal a Decimal */
     private Button btnHexadecimalDecimal;
 
+    /** Boton Graficador Seno */
+    private Button btnGraficadorSeno;
+
+    /** Boton Graficador Coseno */
+    private Button btnGraficadorCoseno;
+
     /** Presentador de la aplicación */
     private OperacionPresentadorInterface presentador;
 
@@ -177,6 +184,7 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         try {
             txtPantalla = (TextView) findViewById(R.id.txtPantalla);
             txtNumeroMemoria = (TextView) findViewById(R.id.txtNumeroMemoria);
@@ -225,6 +233,8 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
             btnBinarioDecimal= (Button) findViewById(R.id.btnBinarioDecimal);
             btnOctalDecimal= (Button) findViewById(R.id.btnOctalDecimal);
             btnHexadecimalDecimal= (Button) findViewById(R.id.btnHexadecimalDecimal);
+            btnGraficadorSeno = (Button) findViewById(R.id.btnGraficadorSeno);
+            btnGraficadorCoseno = (Button) findViewById(R.id.btnGraficadorCoseno);
             btn0.setOnClickListener(listenerIngresarNumero);
             btn1.setOnClickListener(listenerIngresarNumero);
             btn2.setOnClickListener(listenerIngresarNumero);
@@ -267,6 +277,8 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
             btnBinarioDecimal.setOnClickListener(listenerConvertirNumero);
             btnOctalDecimal.setOnClickListener(listenerConvertirNumero);
             btnHexadecimalDecimal.setOnClickListener(listenerConvertirNumero);
+            btnGraficadorSeno.setOnClickListener(listenerGraficarFuncion);
+            btnGraficadorCoseno.setOnClickListener(listenerGraficarFuncion);
         }catch (Exception e){
 
         }
@@ -367,6 +379,14 @@ public class OperacionMainActivity extends AppCompatActivity implements Operacio
         @Override
         public void onClick(View view) {
             presentador.convertirNumero(view,txtPantalla);
+        }
+    };
+
+    /** Escucha el botón para iniciar el graficador una funcion un número */
+    private View.OnClickListener listenerGraficarFuncion = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            presentador.iniciarGraficador(view,txtPantalla,OperacionMainActivity.this);
         }
     };
 

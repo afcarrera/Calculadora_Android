@@ -8,6 +8,7 @@ import com.example.core.calculadora.modelo.OperacionModeloImpl;
 import com.example.core.calculadora.interfaces.OperacionModeloInterface;
 import com.example.core.calculadora.interfaces.OperacionPresentadorInterface;
 import com.example.core.calculadora.interfaces.OperacionVistaInterface;
+import com.example.core.calculadora.vista.OperacionMainActivity;
 
 /**
  * OperacionPresentadorImpl.java:
@@ -497,7 +498,40 @@ public class OperacionPresentadorImpl implements OperacionPresentadorInterface {
             txtPantalla.setText("0.0");
             modelo.vaciarNumeroPantalla();
         }
+    }
 
+    /**
+     * Inicia la pantalla para graficar una funcion
+     *
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
+     * @param principal Vista principal de la app
+     */
+    @Override
+    public void iniciarGraficador(View view, TextView txtPantalla, OperacionMainActivity principal){
+        Double numero=0.0;
+        try{
+            numero= Double.parseDouble(txtPantalla.getText().toString());
+            if(numero<-1000.0||numero>1000.0){
+                vista.mostrarOperacionInvalida();
+                return;
+            }
+        }catch (NumberFormatException e){
+            vista.mostrarOperacionInvalida();
+            return;
+        }
+        switch (view.getId()) {
+            case R.id.btnGraficadorSeno:
+                if (modelo != null) {
+                    modelo.iniciarGraficador(""+numero,"Seno", principal);
+                }
+                break;
+            case R.id.btnGraficadorCoseno:
+                if (modelo != null) {
+                    modelo.iniciarGraficador(""+numero,"Coseno", principal);
+                }
+                break;
+        }
 
     }
 }

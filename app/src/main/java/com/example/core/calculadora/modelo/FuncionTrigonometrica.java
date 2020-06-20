@@ -20,7 +20,7 @@ public class FuncionTrigonometrica {
      * @return Retorna el resultado final de la funcion
      */
     public static Numero obtenerSeno(Numero valor) {
-        Double acum=0.0,signo=1.0,r=14.0;
+        Double acum=0.0,signo=1.0,r=12.0;
         Numero redondeo = new Numero(r);
         valor.setNumero(valor.getNumero()*Math.PI/180);
         for(int i=1; i<100; i+=2)
@@ -43,7 +43,7 @@ public class FuncionTrigonometrica {
      * @return Retorna el resultado final de la funcion
      */
     public static Numero obtenerCoseno(Numero valor) {
-        Double acum=0.0,signo=1.0,r=14.0;
+        Double acum=0.0,signo=1.0,r=12.0;
         Numero redondeo = new Numero(r);
         valor.setNumero(valor.getNumero()*Math.PI/180);
         for(int i=0; i<100; i+=2)

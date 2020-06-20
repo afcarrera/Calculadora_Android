@@ -1,6 +1,10 @@
 package com.example.core.calculadora.modelo;
+import android.content.Intent;
+
 import com.example.core.calculadora.interfaces.OperacionModeloInterface;
 import com.example.core.calculadora.interfaces.OperacionPresentadorInterface;
+import com.example.core.calculadora.vista.GraficadorActivity;
+import com.example.core.calculadora.vista.OperacionMainActivity;
 
 /**
  * OperacionModeloImpl.java:
@@ -14,16 +18,14 @@ import com.example.core.calculadora.interfaces.OperacionPresentadorInterface;
 
 public class OperacionModeloImpl implements OperacionModeloInterface {
 
-
     /** Presentador de la aplicación */
     private OperacionPresentadorInterface presentador;
 
     /** Cajas de texto de la aplicación */
     private ObjetosPantalla objetosPantalla;
 
-
     /**
-     * Instancia los atributos de la clase implementada presentador.
+     * Instancia los atributos de la clase implementada modelo.
      *
      * @param operationPresenter Presentador de la aplicación
      */
@@ -377,6 +379,31 @@ public class OperacionModeloImpl implements OperacionModeloInterface {
         }catch (NumberFormatException e){
             presentador.mostrarOperacionInvalida();
         }
+    }
+
+    /**
+     * Inicia la pantalla para graficar una funcion
+     *
+     * @param numero Valor del número del cual se requiere el grafico.
+     * @param funcion Funcion de la cual se requiere el grafico.
+     * @param principal Vista principal de la app
+     */
+    @Override
+    public void iniciarGraficador(String numero, String funcion, OperacionMainActivity principal){
+        Intent i = new Intent(principal, GraficadorActivity.class);
+        i.putExtra("Numero",numero);
+        if(funcion=="Seno"){
+            i.putExtra("Funcion","El "+funcion+" de "+numero +" es: "+
+                    FuncionTrigonometrica.obtenerSeno(
+                            new Numero(Double.parseDouble(numero))).getNumero().toString() );
+            vaciarNumeroPantalla();
+        }else{
+            i.putExtra("Funcion","El "+funcion+" de "+numero +" es: "+
+                    FuncionTrigonometrica.obtenerCoseno(
+                            new Numero(Double.parseDouble(numero))).getNumero().toString() );
+            vaciarNumeroPantalla();
+        }
+        principal.startActivity(i);
     }
 
 }

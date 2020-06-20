@@ -3,6 +3,8 @@ package com.example.core.calculadora.interfaces;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.core.calculadora.vista.OperacionMainActivity;
+
 /**
  * OperacionPresentadorInterface.java:
  *
@@ -154,6 +156,15 @@ public interface OperacionPresentadorInterface {
      * @param txtPantalla Número ingresado por pantalla
      */
     void borrarCaracterPantalla(View view, TextView txtPantalla);
+
+    /**
+     * Inicia la pantalla para graficar una funcion
+     *
+     * @param view Vista de la aplicación
+     * @param txtPantalla Número ingresado por pantalla
+     * @param principal Vista principal de la app
+     */
+    void iniciarGraficador(View view, TextView txtPantalla, OperacionMainActivity principal);
 
 }
 

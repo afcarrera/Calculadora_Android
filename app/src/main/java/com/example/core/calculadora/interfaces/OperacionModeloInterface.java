@@ -1,6 +1,7 @@
 package com.example.core.calculadora.interfaces;
 
 import com.example.core.calculadora.modelo.Numero;
+import com.example.core.calculadora.vista.OperacionMainActivity;
 
 /**
  * OperacionModeloInterface.java:
@@ -162,6 +163,15 @@ public interface OperacionModeloInterface {
      * @param numero Valor del número del cual se requiere la conversion.
      */
     void convertirDecimalHexadecimal(String numero);
+
+    /**
+     * Inicia la pantalla para graficar una funcion
+     *
+     * @param numero Valor del número del cual se requiere el grafico.
+     * @param funcion Funcion de la cual se requiere el grafico.
+     * @param principal Vista principal de la app
+     */
+    void iniciarGraficador(String numero, String funcion, OperacionMainActivity principal);
 
 
 }
